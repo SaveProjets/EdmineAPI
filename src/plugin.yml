@@ -1,0 +1,4 @@
+name: EdmineAPI
+version: 1.0
+author: EdmineCoreTeam
+main: fr.edminecoreteam.api.EdmineAPI
