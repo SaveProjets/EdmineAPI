@@ -39,7 +39,7 @@ public class MySQL {
                 SQLTasks start = new SQLTasks(api, instance);
              //   start.runTaskTimer((Plugin)this.api, 0L, 20L);
 
-                message("connectMSG");
+                SQLmessage("connectMSG");
             }
             catch (SQLException e) {
                 e.printStackTrace();
@@ -52,7 +52,7 @@ public class MySQL {
             try {
                 MySQL.connection.close();
 
-                message("disconnectMSG");
+                SQLmessage("disconnectMSG");
             }
             catch (SQLException e) {
                 e.printStackTrace();
@@ -107,22 +107,14 @@ public class MySQL {
     }
 
 
-    private void message(String condition) {
+    private void SQLmessage(String condition) {
         if (condition == "connectMSG")
         {
-            System.out.println("+--------------------+");
-            System.out.println("ED-NETWORK API");
-            System.out.println("ORM: Enable");
-            System.out.println("ORM-DATABASE: Connected");
-            System.out.println("+--------------------+");
+            System.out.println("EDMINEAPI | ORM-DATABASE: Connected");
         }
         if (condition == "disconnectMSG")
         {
-            System.out.println("+--------------------+");
-            System.out.println("ED-NETWORK API");
-            System.out.println("ORM: Disable");
-            System.out.println("ORM-DATABASE: Disconnected");
-            System.out.println("+--------------------+");
+            System.out.println("EDMINEAPI | ORM-DATABASE: Disconnected");
         }
     }
 
