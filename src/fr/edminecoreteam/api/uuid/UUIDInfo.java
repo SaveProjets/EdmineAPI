@@ -16,6 +16,10 @@ public class UUIDInfo {
         this.uuidInfo.put(p, this);
     }
 
+    /**
+     * Permet de récupérer l'uuid d'un joueur à l'aide de son pseudo
+     * @return UUID du joueur
+     */
     public String getUUID(){ return uuidData.getUUID();}
 
 }
