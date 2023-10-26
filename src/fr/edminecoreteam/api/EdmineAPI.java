@@ -77,7 +77,7 @@ public final class EdmineAPI extends JavaPlugin{
     private static ItemManager itemManager;
     private static MenuManager menuManager;
 
-    public MySQL getMySQL() { return database; }
+    public MySQL getMySQL() { return this.database; }
 
     public static ItemManager getItemManager() {
         return itemManager;
