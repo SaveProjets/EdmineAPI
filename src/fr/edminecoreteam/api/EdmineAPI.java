@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class EdmineAPI extends JavaPlugin{
 
     private static EdmineAPI Instance;
-    public MySQL database;
+    private MySQL database;
     private SQLState sqlState;
     private String SQLAdress;
     private String SQLDatabase;
