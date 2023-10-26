@@ -7,13 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class receiveRequests
+public class selectRequests
 {
     private final EdmineAPI edmineAPI = EdmineAPI.getInstance();
     private final MySQL mySQL = edmineAPI.getMySQL();
     private final String table;
 
-    public receiveRequests(String table)
+    public selectRequests(String table)
     {
         this.table = table;
     }

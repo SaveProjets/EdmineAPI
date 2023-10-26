@@ -4,16 +4,15 @@ import fr.edminecoreteam.api.EdmineAPI;
 import fr.edminecoreteam.api.edorm.MySQL;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class sendRequests
+public class updateRequests
 {
     private final EdmineAPI edmineAPI = EdmineAPI.getInstance();
     private final MySQL mySQL = edmineAPI.getMySQL();
     private final String table;
 
-    public sendRequests(String table)
+    public updateRequests(String table)
     {
         this.table = table;
     }
