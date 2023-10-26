@@ -25,12 +25,6 @@ public class UUIDData {
             }
         }
             try {
-                if(CheckServerType.isSpigotServer()){
-                    Bukkit.getLogger().info("spigot test console");
-                }else if (CheckServerType.isBungeeCordServer()){
-                    ProxyServer.getInstance().getConsole().sendMessage("Ceci est un message dans la console BungeeCord.");
-                }
-
                 PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT player_uuid FROM ed_accounts WHERE player_name = ?");
                 ps.setString(1, p);
                 String response = null;
