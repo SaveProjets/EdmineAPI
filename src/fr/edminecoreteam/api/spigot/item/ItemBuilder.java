@@ -1,10 +1,9 @@
-package fr.edminecoreteam.api.utils;
+package fr.edminecoreteam.api.spigot.item;
 
 import com.google.gson.Gson;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
-import fr.edminecoreteam.api.spigot.item.Item;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
@@ -207,5 +206,10 @@ public class ItemBuilder {
     public String toJson() {
         return new Gson().toJson(is);
     }
+
+    public Button toButton() {
+        return new Button(this.toItemStack());
+    }
+
 
 }

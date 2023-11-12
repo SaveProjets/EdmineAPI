@@ -5,16 +5,18 @@ import org.bukkit.inventory.ItemStack;
 
 public class ItemManager {
 
-    public Item createItem(ItemStack itemStack) {
-        return new Item(itemStack);
+    public ItemBuilder createItem(ItemStack itemStack) {
+        return new ItemBuilder(itemStack);
     }
 
-    public Item createItem(Material material) {
-        return new Item(material);
+    public ItemBuilder createItem(Material material) {
+        return new ItemBuilder(material);
     }
 
-    public Item createItem(Material material, int amount) {
-        return new Item(material, amount);
+    public ItemBuilder createItem(Material material, int amount) {
+        return new ItemBuilder(material, amount);
     }
+
+    public ItemBuilder createItem(Material material, int amount, short meta) { return new ItemBuilder(material, amount, meta); }
 
 }

@@ -8,21 +8,21 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Item extends ItemStack {
+public class ItemNotUse extends ItemStack {
 
-    protected Item(ItemStack itemStack) {
+    protected ItemNotUse(ItemStack itemStack) {
         super(itemStack);
     }
 
-    protected Item(Material material) {
+    protected ItemNotUse(Material material) {
         super(material);
     }
 
-    protected Item(Material material, int amount) {
+    protected ItemNotUse(Material material, int amount) {
         super(material, amount);
     }
 
-    public Item setName(String name) {
+    public ItemNotUse setName(String name) {
         ItemMeta meta = this.getItemMeta();
         assert meta != null;
         meta.setDisplayName(name);
@@ -39,7 +39,7 @@ public class Item extends ItemStack {
         return this.getType().name();
     }
 
-    public Item setLore(List<String> lore) {
+    public ItemNotUse setLore(List<String> lore) {
         ItemMeta meta = this.getItemMeta();
         assert meta != null;
         meta.setLore(lore);
@@ -53,12 +53,12 @@ public class Item extends ItemStack {
         return meta.getLore();
     }
 
-    public Item setQuantity(int amount) {
+    public ItemNotUse setQuantity(int amount) {
         this.setAmount(amount);
         return this;
     }
 
-    public Item setUnbreakable(boolean unbreakable) {
+    public ItemNotUse setUnbreakable(boolean unbreakable) {
         ItemMeta meta = this.getItemMeta();
         assert meta != null;
         meta.spigot().setUnbreakable(unbreakable);
@@ -72,17 +72,17 @@ public class Item extends ItemStack {
         return meta.spigot().isUnbreakable();
     }
 
-    public Item addEnchant(Enchantment enchant, int level) {
+    public ItemNotUse addEnchant(Enchantment enchant, int level) {
         this.addEnchantment(enchant, level);
         return this;
     }
 
-    public Item addEnchants(Map<Enchantment, Integer> enchants) {
+    public ItemNotUse addEnchants(Map<Enchantment, Integer> enchants) {
         this.addEnchantments(enchants);
         return this;
     }
 
-    public Item addFlags(ItemFlag... flags) {
+    public ItemNotUse addFlags(ItemFlag... flags) {
         ItemMeta meta = this.getItemMeta();
         assert meta != null;
         meta.addItemFlags(flags);
@@ -90,7 +90,7 @@ public class Item extends ItemStack {
         return this;
     }
 
-    public Item removeFlags(ItemFlag... flags) {
+    public ItemNotUse removeFlags(ItemFlag... flags) {
         ItemMeta meta = this.getItemMeta();
         assert meta != null;
         meta.removeItemFlags(flags);
