@@ -33,4 +33,15 @@ public class PlayerManager {
         }
         return false;
     }
+
+
+    /**
+     * Permet de récupérer l'uuid d'un joueur à partir de son Pseudo
+     * @param p Pseudo du joueur
+     * @return String : UUID du joueur
+     */
+    public String getUUID(String p){
+        AccountInfo accountInfo = new AccountInfo(p);
+        return accountInfo.getUUID();
+    }
 }
