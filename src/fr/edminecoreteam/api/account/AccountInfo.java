@@ -31,4 +31,10 @@ public class AccountInfo
 
     public String getRankType() { return accountData.getRankType(); }
     public String getRankName() { return accountData.getRankName(); }
+
+    /**
+     * Permet de récupérer l'uuid d'un joueur à l'aide de son pseudo
+     * @return UUID du joueur
+     */
+    public String getUUID() { return accountData.getUUID(); }
 }

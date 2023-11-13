@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.edminecoreteam.api.EdmineAPI;
-import fr.edminecoreteam.api.spigot.item.Item;
+import fr.edminecoreteam.api.spigot.item.ItemNotUse;
 import fr.edminecoreteam.api.spigot.item.Button;
 import fr.edminecoreteam.api.spigot.item.ButtonAction;
 import org.bukkit.Bukkit;
@@ -69,7 +69,7 @@ public class Menu implements Listener {
         }
     }
 
-    public void setButton(String symbol, Item item) {
+    public void setButton(String symbol, ItemNotUse item) {
         setButton(symbol, item.asButton());
     }
 
