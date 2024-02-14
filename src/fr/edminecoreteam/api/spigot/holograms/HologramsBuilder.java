@@ -24,7 +24,13 @@ public class HologramsBuilder
     public HologramsBuilder() { }
     public final HashMap<String, List<ArmorStand>> getArmorStands() { return this.armorStands; }
     public final HashMap<Player, HashMap<String, List<EntityArmorStand>>> getArmorStandsNMS() { return this.armorStandsNMS; }
-
+    
+    /**
+     * Permet de créer un hologram avec plusieurs lignes
+     * @param id Identifiant pour récupérer plus tard l'hologram.
+     * @param entry Liste de string pour le texte de l'hologram.
+     * @param location Location pour positionner l'hologram.
+     */
     public void createBukkitHologram(String id, List<String> entry, Location location)
     {
         Location newLoc = location;
@@ -44,7 +50,11 @@ public class HologramsBuilder
         armorStands.put(id, aList);
         System.out.println(prefix + "Load Hologram with ID: " + id + " | and loads " + entry.size() + " entities.");
     }
-
+    
+    /**
+     * Permet de supprimé un hologram avec ses lignes
+     * @param id Identifiant pour récupérer l'hologram.
+     */
     public void removeBukkitHolgram(String id)
     {
         for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet())
@@ -64,7 +74,13 @@ public class HologramsBuilder
             }
         }
     }
-
+    
+    /**
+     * Permet de modifier une ligne sur l'hologram
+     * @param id Identifiant pour récupérer l'hologram a modifier.
+     * @param getLine Ligne a modifier (Min 1).
+     * @param newLine Nouveau texte.
+     */
     public void updateLineBukkitHolograms(String id, int getLine, String newLine)
     {
         int line = getLine - 1;
@@ -80,7 +96,12 @@ public class HologramsBuilder
             }
         }
     }
-
+    
+    /**
+     * Permet de supprimer une ligne sur l'hologram
+     * @param id Identifiant pour récupérer l'hologram a modifier.
+     * @param getLine Ligne a supprimer (Min 1).
+     */
     public void removeLineBukkitHolograms(String id, int getLine)
     {
         for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet())
@@ -102,7 +123,12 @@ public class HologramsBuilder
             }
         }
     }
-
+    
+    /**
+     * Permet de téléporter un hologram et toutes ses lignes a une location
+     * @param id Identifiant pour récupérer l'hologram a modifier.
+     * @param location Nouvelle location.
+     */
     public void teleportBukkitHolograms(String id, Location location)
     {
         Location newLoc = location;
@@ -119,7 +145,14 @@ public class HologramsBuilder
             }
         }
     }
-
+    
+    /**
+     * Permet de créer un hologram NMS avec plusieurs lignes
+     * @param p Le joueur qui va recevoir les packets.
+     * @param id Identifiant pour récupérer plus tard l'hologram.
+     * @param entry Liste de string pour le texte de l'hologram.
+     * @param location Location pour positionner l'hologram.
+     */
     public void createPacketHologram(Player p, String id, List<String> entry, Location location)
     {
         Location newLoc = location;
@@ -144,7 +177,12 @@ public class HologramsBuilder
         armorStandsNMS.put(p, innerMap);
         System.out.println(prefix + "Load Packet Hologram for player (" + p.getName() + ") with ID: " + id + " | and send " + entry.size() + " packets.");
     }
-
+    
+    /**
+     * Permet de supprimer un hologram NMS
+     * @param p Le joueur qui va recevoir les packets.
+     * @param id Identifiant pour récupérer plus tard l'hologram.
+     */
     public void removePacketHologram(Player p, String id)
     {
         for (Map.Entry<Player, HashMap<String, List<EntityArmorStand>>> en : armorStandsNMS.entrySet())
