@@ -31,8 +31,8 @@ public final class EdmineAPI extends JavaPlugin{
         Bukkit.getLogger().info("Loading managers...");
         itemManager = new ItemManager();
         menuManager = new MenuManager();
-        this.hologramsBuilder = new HologramsBuilder();
-        this.bossBar = new BossBarBuilder("§r", 300);
+        hologramsBuilder = new HologramsBuilder();
+        bossBar = new BossBarBuilder("§r", 300);
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
 
@@ -83,6 +83,6 @@ public final class EdmineAPI extends JavaPlugin{
     public static MenuManager getMenuManager() {
         return menuManager;
     }
-    public HologramsBuilder getHologramsBuilder() { return this.hologramsBuilder; }
-    public BossBarBuilder getBossBar() { return this.bossBar; }
+    public HologramsBuilder getHologramsBuilder() { return hologramsBuilder; }
+    public BossBarBuilder getBossBar() { return bossBar; }
 }
