@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class BossBarEvent implements Listener
@@ -27,7 +26,14 @@ public class BossBarEvent implements Listener
     }
 
     @EventHandler
-    public void playerLeaveBossBar(PlayerQuitEvent e) { Player p = e.getPlayer(); edmineAPI.getBossBar().removePlayer(p); }
+    public void playerLeaveBossBar(PlayerQuitEvent e)
+    {
+        Player p = e.getPlayer();
+        if (edmineAPI.getBossBar().getWithers().containsKey(p))
+        {
+            edmineAPI.getBossBar().removePlayer(p);
+        }
+    }
 
     @EventHandler
     public void onWitherDamage(EntityDamageEvent e)
