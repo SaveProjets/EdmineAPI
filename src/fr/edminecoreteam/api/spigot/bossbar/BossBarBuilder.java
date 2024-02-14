@@ -36,7 +36,11 @@ public class BossBarBuilder extends BukkitRunnable
         this.health = health;
         runTaskTimer(edmineAPI, 0, 10);
     }
-
+    
+    /**
+     * Permet de put un joueur dans une liste qui gère tout les joueurs et leur bossbar.
+     * @param p Joueur
+     */
     public void putPlayer(Player p)
     {
         Location location = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
@@ -71,7 +75,11 @@ public class BossBarBuilder extends BukkitRunnable
             }
         }.runTaskTimer((Plugin) edmineAPI, 0L, 5L);
     }
-
+    
+    /**
+     * Permet de remove un joueur de la liste qui gère tout les joueurs et leur bossbar.
+     * @param p Joueur
+     */
     public void removePlayer(Player p)
     {
         Wither wither = withers.get(p);
@@ -79,7 +87,11 @@ public class BossBarBuilder extends BukkitRunnable
         wither.remove();
         if (init.contains(p)) { init.remove(p); }
     }
-
+    
+    /**
+     * Permet de définir un titre de bossbar pour les joueurs de la liste.
+     * @param title Titre de la bossbar qui s'appliquera a tous les joueurs de la liste.
+     */
     public void setTitle(String title)
     {
         this.title = title;
@@ -89,7 +101,12 @@ public class BossBarBuilder extends BukkitRunnable
             wither.setCustomName(title);
         }
     }
-
+    
+    /**
+     * Permet de définir la barre de vie du bossbar, avec deux paramètres qui servent a créer un pourcentage sur 100%
+     * @param health Chiffre actuel.
+     * @param maxHealth Chiffre maximal.
+     */
     public void setHealth(int health, int maxHealth)
     {
         if (health == 0)
@@ -138,7 +155,10 @@ public class BossBarBuilder extends BukkitRunnable
         tag.setBoolean("Visible", false);
         nmsEntity.f(tag);
     }
-
+    
+    /**
+     * Permet de clear la liste et de remove tout les bossbar
+     */
     public void removeAllFromMap()
     {
         for (Map.Entry<Player, Wither> en : withers.entrySet())
