@@ -2,6 +2,8 @@ package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.edorm.MySQL;
 import fr.edminecoreteam.api.edorm.SQLState;
+import fr.edminecoreteam.api.spigot.bossbar.BossBar;
+import fr.edminecoreteam.api.spigot.bossbar.BossBarEvent;
 import fr.edminecoreteam.api.spigot.holograms.HologramsBuilder;
 import fr.edminecoreteam.api.spigot.item.ItemManager;
 import fr.edminecoreteam.api.spigot.menu.MenuManager;
@@ -30,6 +32,8 @@ public final class EdmineAPI extends JavaPlugin{
         itemManager = new ItemManager();
         menuManager = new MenuManager();
         this.hologramsBuilder = new HologramsBuilder();
+        this.bossBar = new BossBar("§r", 300);
+        Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
 
         MySQLConnect();
@@ -68,6 +72,7 @@ public final class EdmineAPI extends JavaPlugin{
     private static ItemManager itemManager;
     private static MenuManager menuManager;
     private HologramsBuilder hologramsBuilder;
+    private BossBar bossBar;
 
     public MySQL getMySQL() { return this.database; }
 
@@ -79,4 +84,5 @@ public final class EdmineAPI extends JavaPlugin{
         return menuManager;
     }
     public HologramsBuilder getHologramsBuilder() { return this.hologramsBuilder; }
+    public BossBar getBossBar() { return this.bossBar; }
 }
