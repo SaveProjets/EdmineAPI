@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BossBar extends BukkitRunnable
+public class BossBarBuilder extends BukkitRunnable
 {
     private String title;
     private double health;
@@ -30,7 +30,7 @@ public class BossBar extends BukkitRunnable
 
     private final static EdmineAPI edmineAPI = EdmineAPI.getInstance();
 
-    public BossBar(String title, double health)
+    public BossBarBuilder(String title, double health)
     {
         this.title = title;
         this.health = health;
