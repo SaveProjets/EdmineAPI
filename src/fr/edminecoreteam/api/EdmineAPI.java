@@ -2,6 +2,7 @@ package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.edorm.MySQL;
 import fr.edminecoreteam.api.edorm.SQLState;
+import fr.edminecoreteam.api.spigot.holograms.HologramsBuilder;
 import fr.edminecoreteam.api.spigot.item.ItemManager;
 import fr.edminecoreteam.api.spigot.menu.MenuManager;
 import org.bukkit.Bukkit;
@@ -28,6 +29,7 @@ public final class EdmineAPI extends JavaPlugin{
         Bukkit.getLogger().info("Loading managers...");
         itemManager = new ItemManager();
         menuManager = new MenuManager();
+        this.hologramsBuilder = new HologramsBuilder();
         Bukkit.getLogger().info("Managers loaded successfully.");
 
         MySQLConnect();
@@ -65,6 +67,7 @@ public final class EdmineAPI extends JavaPlugin{
 
     private static ItemManager itemManager;
     private static MenuManager menuManager;
+    private HologramsBuilder hologramsBuilder;
 
     public MySQL getMySQL() { return this.database; }
 
@@ -75,4 +78,5 @@ public final class EdmineAPI extends JavaPlugin{
     public static MenuManager getMenuManager() {
         return menuManager;
     }
+    public HologramsBuilder getHologramsBuilder() { return this.hologramsBuilder; }
 }
