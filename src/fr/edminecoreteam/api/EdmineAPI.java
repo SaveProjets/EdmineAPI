@@ -71,8 +71,8 @@ public final class EdmineAPI extends JavaPlugin{
 
     private static ItemManager itemManager;
     private static MenuManager menuManager;
-    private HologramsBuilder hologramsBuilder;
-    private BossBarBuilder bossBar;
+    private static HologramsBuilder hologramsBuilder;
+    private static BossBarBuilder bossBar;
 
     public MySQL getMySQL() { return this.database; }
 
@@ -83,6 +83,6 @@ public final class EdmineAPI extends JavaPlugin{
     public static MenuManager getMenuManager() {
         return menuManager;
     }
-    public HologramsBuilder getHologramsBuilder() { return hologramsBuilder; }
-    public BossBarBuilder getBossBar() { return bossBar; }
+    public static HologramsBuilder getHologramsBuilder() { return hologramsBuilder; }
+    public static BossBarBuilder getBossBar() { return bossBar; }
 }

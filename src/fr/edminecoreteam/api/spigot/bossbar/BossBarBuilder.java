@@ -28,13 +28,11 @@ public class BossBarBuilder extends BukkitRunnable
     private final HashMap<Player, Wither> withers = new HashMap<>();
     private final List<Player> init = new ArrayList<>();
 
-    private final static EdmineAPI edmineAPI = EdmineAPI.getInstance();
-
     public BossBarBuilder(String title, double health)
     {
         this.title = title;
         this.health = health;
-        runTaskTimer(edmineAPI, 0, 10);
+        runTaskTimer(EdmineAPI.getInstance(), 0, 10);
     }
     
     /**
@@ -45,7 +43,7 @@ public class BossBarBuilder extends BukkitRunnable
     {
         Location location = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
         Location toSpawn = location.add(location.getDirection().multiply(5));
-        Wither wither = (Wither) edmineAPI.getServer().getWorld(p.getWorld().getName()).spawnEntity(toSpawn, EntityType.WITHER);
+        Wither wither = (Wither) EdmineAPI.getInstance().getServer().getWorld(p.getWorld().getName()).spawnEntity(toSpawn, EntityType.WITHER);
 
         wither.setCustomName(title);
         wither.setHealth(wither.getMaxHealth());
@@ -73,7 +71,7 @@ public class BossBarBuilder extends BukkitRunnable
                     run();
                 }
             }
-        }.runTaskTimer((Plugin) edmineAPI, 0L, 5L);
+        }.runTaskTimer((Plugin) EdmineAPI.getInstance(), 0L, 5L);
     }
     
     /**
@@ -190,7 +188,7 @@ public class BossBarBuilder extends BukkitRunnable
             {
                 wither.teleport(location);
             }
-            for(Player on : edmineAPI.getServer().getOnlinePlayers())
+            for(Player on : EdmineAPI.getInstance().getServer().getOnlinePlayers())
             {
                 if (!on.getName().equalsIgnoreCase(player.getName()))
                 {

@@ -12,26 +12,24 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class BossBarEvent implements Listener
 {
 
-    private final static EdmineAPI edmineAPI = EdmineAPI.getInstance();
-
     @EventHandler
     public void onPlayerWorldChange(PlayerChangedWorldEvent e)
     {
         Player p = e.getPlayer();
-        if (edmineAPI.getBossBar().getWithers().containsKey(p))
+        if (EdmineAPI.getBossBar().getWithers().containsKey(p))
         {
-            edmineAPI.getBossBar().removePlayer(p);
+            EdmineAPI.getBossBar().removePlayer(p);
+            EdmineAPI.getBossBar().putPlayer(p);
         }
-        edmineAPI.getBossBar().putPlayer(p);
     }
 
     @EventHandler
     public void playerLeaveBossBar(PlayerQuitEvent e)
     {
         Player p = e.getPlayer();
-        if (edmineAPI.getBossBar().getWithers().containsKey(p))
+        if (EdmineAPI.getBossBar().getWithers().containsKey(p))
         {
-            edmineAPI.getBossBar().removePlayer(p);
+            EdmineAPI.getBossBar().removePlayer(p);
         }
     }
 
