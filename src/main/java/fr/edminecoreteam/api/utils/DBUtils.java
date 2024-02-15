@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class DBUtils {
 
@@ -30,6 +32,26 @@ public class DBUtils {
     //===================================
     // Base De Données - Create
     //===================================
+
+    public void createAccount(Player player) {
+        // Création du compte
+        try {
+            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
+            final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection) VALUES (?,?,?,?)");
+
+            preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id"));
+            preparedStatement.setString(2, player.getUniqueId().toString());
+            preparedStatement.setString(3, player.getName());
+            preparedStatement.setString(4, new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime()));
+            preparedStatement.executeUpdate();
+
+            connection.close();
+        } catch (SQLException event) {
+            event.printStackTrace();
+        }
+
+        // Création du rank
+    }
 
     //===================================
     // Base De Données - Vérification
