@@ -39,8 +39,16 @@ public class PlayerManager {
      * Permet de verifier si un joueur existe
      * @param p Player
      */
-    public boolean exist(Player p){
+    public static boolean exist(Player p){
         return players.containsKey(p);
+    }
+
+    /**
+     * Permet de retirer un joueur
+     * @param p Player
+     */
+    public static void removePlayer(Player p){
+        players.remove(p);
     }
 
     /**
