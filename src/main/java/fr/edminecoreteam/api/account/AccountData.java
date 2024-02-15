@@ -18,8 +18,7 @@ public class AccountData
         this.p = p;
     }
 
-    protected boolean hasRank()
-    {
+    protected boolean hasRank() {
         try
         {
             PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("SELECT player_rank_id FROM ed_ranks WHERE player_name = ?");

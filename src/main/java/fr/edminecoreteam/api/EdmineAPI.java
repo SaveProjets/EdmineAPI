@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public final class EdmineAPI extends JavaPlugin{
+public final class EdmineAPI extends JavaPlugin {
 
     private static EdmineAPI Instance;
     private MySQL database;
