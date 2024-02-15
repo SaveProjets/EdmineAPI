@@ -47,7 +47,6 @@ public class DatabaseAccess {
         if(this.hikariDataSource == null){
             System.out.println("Not connected to DataBase");
             setupHikariCP();
-            Bukkit.broadcastMessage("Succès 3");
         }
         return this.hikariDataSource.getConnection();
     }
