@@ -14,7 +14,7 @@ public final class EdmineAPI extends JavaPlugin {
     private static EdmineAPI instance;
     private HologramsBuilder hologramsBuilder;
     private BossBarBuilder bossBar;
-    private final InventoryManager invManager = new InventoryManager(this);
+    private final InventoryManager smartInvManager = new InventoryManager(this);
 
     public static EdmineAPI getInstance() {
         return instance;
@@ -24,7 +24,7 @@ public final class EdmineAPI extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         Bukkit.getLogger().info("EDMINEAPI enabling");
-        this.invManager.init();
+        this.smartInvManager.init();
         instance = this;
 
         Bukkit.getLogger().info("Loading managers...");
