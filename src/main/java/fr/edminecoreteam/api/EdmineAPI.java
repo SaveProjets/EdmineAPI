@@ -4,8 +4,6 @@ import fr.edminecoreteam.api.database.DatabaseManager;
 import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
 import fr.edminecoreteam.api.event.BossBarEvent;
 import fr.edminecoreteam.api.utils.builder.HologramsBuilder;
-import fr.edminecoreteam.api.spigot.item.ItemManager;
-import fr.edminecoreteam.api.spigot.menu.MenuManager;
 import fr.minuskube.inv.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
