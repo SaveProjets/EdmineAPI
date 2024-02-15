@@ -16,6 +16,10 @@ public final class EdmineAPI extends JavaPlugin {
     private static EdmineAPI Instance;
     private MySQL database;
     private SQLState sqlState;
+    private ItemManager itemManager;
+    private MenuManager menuManager;
+    private HologramsBuilder hologramsBuilder;
+    private BossBarBuilder bossBar;
 
 
     public static EdmineAPI getInstance() {
@@ -29,13 +33,12 @@ public final class EdmineAPI extends JavaPlugin {
         Instance = this;
 
         Bukkit.getLogger().info("Loading managers...");
-        itemManager = new ItemManager();
-        menuManager = new MenuManager();
-        hologramsBuilder = new HologramsBuilder();
-        bossBar = new BossBarBuilder("§r", 300);
+        this.itemManager = new ItemManager();
+        this.menuManager = new MenuManager();
+        this.hologramsBuilder = new HologramsBuilder();
+        this.bossBar = new BossBarBuilder("§r", 300);
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
-
         MySQLConnect();
     }
 
@@ -68,21 +71,15 @@ public final class EdmineAPI extends JavaPlugin {
         this.sqlState = sqlState;
     }
 
-
-    private static ItemManager itemManager;
-    private static MenuManager menuManager;
-    private static HologramsBuilder hologramsBuilder;
-    private static BossBarBuilder bossBar;
-
     public MySQL getMySQL() { return this.database; }
 
-    public static ItemManager getItemManager() {
+    public ItemManager getItemManager() {
         return itemManager;
     }
 
-    public static MenuManager getMenuManager() {
+    public MenuManager getMenuManager() {
         return menuManager;
     }
-    public static HologramsBuilder getHologramsBuilder() { return hologramsBuilder; }
-    public static BossBarBuilder getBossBar() { return bossBar; }
+    public HologramsBuilder getHologramsBuilder() { return hologramsBuilder; }
+    public BossBarBuilder getBossBar() { return bossBar; }
 }
