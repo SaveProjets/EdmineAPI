@@ -1,4 +1,4 @@
-package fr.edminecoreteam.api.spigot.holograms;
+package fr.edminecoreteam.api.utils.builder;
 
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;

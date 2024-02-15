@@ -1,4 +1,4 @@
-package fr.edminecoreteam.api.spigot.bossbar;
+package fr.edminecoreteam.api.utils.builder;
 
 import fr.edminecoreteam.api.EdmineAPI;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;

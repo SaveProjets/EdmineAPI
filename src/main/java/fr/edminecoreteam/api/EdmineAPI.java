@@ -1,11 +1,12 @@
 package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
-import fr.edminecoreteam.api.spigot.bossbar.BossBarBuilder;
-import fr.edminecoreteam.api.spigot.bossbar.BossBarEvent;
-import fr.edminecoreteam.api.spigot.holograms.HologramsBuilder;
+import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
+import fr.edminecoreteam.api.event.BossBarEvent;
+import fr.edminecoreteam.api.utils.builder.HologramsBuilder;
 import fr.edminecoreteam.api.spigot.item.ItemManager;
 import fr.edminecoreteam.api.spigot.menu.MenuManager;
+import fr.minuskube.inv.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,11 +14,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class EdmineAPI extends JavaPlugin {
 
     private static EdmineAPI instance;
-    private ItemManager itemManager;
-    private MenuManager menuManager;
     private HologramsBuilder hologramsBuilder;
     private BossBarBuilder bossBar;
-
+    private final InventoryManager invManager = new InventoryManager(this);
 
     public static EdmineAPI getInstance() {
         return instance;
@@ -27,11 +26,10 @@ public final class EdmineAPI extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         Bukkit.getLogger().info("EDMINEAPI enabling");
+        this.invManager.init();
         instance = this;
 
         Bukkit.getLogger().info("Loading managers...");
-        this.itemManager = new ItemManager();
-        this.menuManager = new MenuManager();
         this.hologramsBuilder = new HologramsBuilder();
         this.bossBar = new BossBarBuilder("§r", 300);
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
@@ -43,13 +41,6 @@ public final class EdmineAPI extends JavaPlugin {
     public void onDisable() {
         DatabaseManager.closeAllDatabaseConnections();
     }
-    public ItemManager getItemManager() {
-        return itemManager;
-    }
-
-    public MenuManager getMenuManager() {
-        return menuManager;
-    }
-    public HologramsBuilder getHologramsBuilder() { return hologramsBuilder; }
+    public HologramsBuilder getHologramBuilder() { return hologramsBuilder; }
     public BossBarBuilder getBossBar() { return bossBar; }
 }

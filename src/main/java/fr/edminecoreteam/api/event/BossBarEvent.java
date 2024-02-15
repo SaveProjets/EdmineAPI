@@ -1,4 +1,4 @@
-package fr.edminecoreteam.api.spigot.bossbar;
+package fr.edminecoreteam.api.event;
 
 import fr.edminecoreteam.api.EdmineAPI;
 import org.bukkit.entity.EntityType;
