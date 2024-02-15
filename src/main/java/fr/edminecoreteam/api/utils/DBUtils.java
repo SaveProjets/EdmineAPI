@@ -40,10 +40,10 @@ public class DBUtils {
      * @param player Joueur
      * @return boolean
      */
-    public boolean ifHaveAAccount(Player player) {
+    public boolean haveAccount(Player player) {
         try {
             final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
-            final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users_informations WHERE uuid = ?");
+            final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ed_accounts WHERE player_uuid = ?");
 
             preparedStatement.setString(1, player.getUniqueId().toString());
             preparedStatement.executeQuery();
