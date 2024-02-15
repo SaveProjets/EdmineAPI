@@ -1,7 +1,6 @@
 package fr.edminecoreteam.api;
 
-import fr.edminecoreteam.api.edorm.MySQL;
-import fr.edminecoreteam.api.edorm.SQLState;
+import fr.edminecoreteam.api.database.DatabaseManager;
 import fr.edminecoreteam.api.spigot.bossbar.BossBarBuilder;
 import fr.edminecoreteam.api.spigot.bossbar.BossBarEvent;
 import fr.edminecoreteam.api.spigot.holograms.HologramsBuilder;
@@ -13,9 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EdmineAPI extends JavaPlugin {
 
-    private static EdmineAPI Instance;
-    private MySQL database;
-    private SQLState sqlState;
+    private static EdmineAPI instance;
     private ItemManager itemManager;
     private MenuManager menuManager;
     private HologramsBuilder hologramsBuilder;
@@ -23,14 +20,14 @@ public final class EdmineAPI extends JavaPlugin {
 
 
     public static EdmineAPI getInstance() {
-        return Instance;
+        return instance;
     }
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         Bukkit.getLogger().info("EDMINEAPI enabling");
-        Instance = this;
+        instance = this;
 
         Bukkit.getLogger().info("Loading managers...");
         this.itemManager = new ItemManager();
@@ -39,40 +36,13 @@ public final class EdmineAPI extends JavaPlugin {
         this.bossBar = new BossBarBuilder("§r", 300);
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
-        MySQLConnect();
+        DatabaseManager.initAllDatabaseConnection();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        DatabaseManager.closeAllDatabaseConnections();
     }
-
-    /*
-     * Méthode de connexion au serveur SQL.
-     *
-     * "jdbc:mysql://", "address (ip)", "database", "user", "password"
-     */
-    public void MySQLConnect()
-    {
-        Instance = this;
-        (this.database = new MySQL(Instance, "jdbc:mysql://", this.getConfig().getString("mysql.host"), this.getConfig().getString("mysql.database"), this.getConfig().getString("mysql.user"), this.getConfig().getString("mysql.password"))).connexion();
-    }
-
-    /*
-     * Méthode de déconnexion au serveur SQL.
-     */
-    private void MySQLDisconnect()
-    {
-        database.deconnexion();
-    }
-
-    public void setSQLState(SQLState sqlState)
-    {
-        this.sqlState = sqlState;
-    }
-
-    public MySQL getMySQL() { return this.database; }
-
     public ItemManager getItemManager() {
         return itemManager;
     }
