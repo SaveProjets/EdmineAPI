@@ -2,6 +2,7 @@ package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
 import fr.edminecoreteam.api.event.PlayerEvents;
+import fr.edminecoreteam.api.management.WorldManager;
 import fr.edminecoreteam.api.utils.DBUtils;
 import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
 import fr.edminecoreteam.api.event.BossBarEvent;
@@ -17,6 +18,7 @@ public final class EdmineAPI extends JavaPlugin {
 
     private static EdmineAPI instance;
     private HologramsBuilder hologramsBuilder;
+    private WorldManager worldManager;
     private BossBarBuilder bossBar;
     private DBUtils dbUtils;
     private final InventoryManager smartInvManager = new InventoryManager(this);
@@ -36,6 +38,7 @@ public final class EdmineAPI extends JavaPlugin {
         this.hologramsBuilder = new HologramsBuilder();
         this.bossBar = new BossBarBuilder("§r", 300);
         this.dbUtils = new DBUtils();
+        this.worldManager = new WorldManager();
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
@@ -48,6 +51,10 @@ public final class EdmineAPI extends JavaPlugin {
     }
     public HologramsBuilder getHologramBuilder() { return hologramsBuilder; }
     public BossBarBuilder getBossBar() { return bossBar; }
+
+    public WorldManager getWorldManager() {
+        return worldManager;
+    }
 
     public DBUtils getDbUtils() {
         return dbUtils;
