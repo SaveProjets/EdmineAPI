@@ -15,6 +15,12 @@ public class WorldManager {
 	@SuppressWarnings("unused")
 	private World world;
 
+	/**
+	 * Get un nom de dossier aléatoire dans le dossier parent spécifié.
+	 *
+	 * @param parentFolderPath le chemin du dossier parent
+	 * @return un nom de dossier aléatoire dans le dossier parent spécifié
+	 */
 	public String getRandomSubfolderName(String parentFolderPath) {
 		File parentFolder = new File(parentFolderPath);
 		if (!parentFolder.exists() || !parentFolder.isDirectory()) {
@@ -31,6 +37,11 @@ public class WorldManager {
 		return subFolders[randomIndex].getName();
 	}
 
+	/**
+	 * Crée un monde de jeu à partir d'un modèle.
+	 *
+	 * @param world le nom du monde
+	 */
 	public void createGameWorld(String world) {
 		File srcDir = new File("gameTemplate/" + world);
 		File destDir = new File("game");
@@ -45,13 +56,22 @@ public class WorldManager {
 		Bukkit.getServer().unloadWorld(Bukkit.getWorld("game"), true);
 	}
 
+	/**
+	 * Décharge un monde.
+	 * @param world Le monde à décharger
+	 */
 	public void unloadWorld(World world) {
 	    this.world = Bukkit.getWorld("");
 	    if(!world.equals(null)) {
 	        Bukkit.getServer().unloadWorld(world, true);
 	    }
 	}
-	
+
+	/**
+	 * Supprime un monde.
+	 * @param path Le chemin du monde à supprimer
+	 * @return
+	 */
 	public boolean deleteWorld(File path) {
 	      if(path.exists()) {
 	          File files[] = path.listFiles();
@@ -65,7 +85,12 @@ public class WorldManager {
 	      }
 	      return(path.delete());
 	}
-	
+
+	/**
+	 * Copie un monde.
+	 * @param source Le monde source
+	 * @param target Le monde cible
+	 */
 	public void copyWorld(File source, File target){
 	    try {
 	        ArrayList<String> ignore = new ArrayList<String>(Arrays.asList("uid.dat", "session.dat"));
