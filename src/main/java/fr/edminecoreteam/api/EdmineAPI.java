@@ -50,7 +50,7 @@ public final class EdmineAPI extends JavaPlugin {
         DatabaseManager.closeAllDatabaseConnections();
     }
     public HologramsBuilder getHologramBuilder() { return hologramsBuilder; }
-    public BossBarBuilder getBossBar() { return bossBar; }
+    public BossBarBuilder getBossBarBuilder() { return bossBar; }
 
     public WorldManager getWorldManager() {
         return worldManager;

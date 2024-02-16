@@ -16,10 +16,10 @@ public class BossBarEvent implements Listener
     public void onPlayerWorldChange(PlayerChangedWorldEvent e)
     {
         Player p = e.getPlayer();
-        if (EdmineAPI.getInstance().getBossBar().getWithers().containsKey(p))
+        if (EdmineAPI.getInstance().getBossBarBuilder().getWithers().containsKey(p))
         {
-            EdmineAPI.getInstance().getBossBar().removePlayer(p);
-            EdmineAPI.getInstance().getBossBar().putPlayer(p);
+            EdmineAPI.getInstance().getBossBarBuilder().removePlayer(p);
+            EdmineAPI.getInstance().getBossBarBuilder().putPlayer(p);
         }
     }
 
@@ -27,9 +27,9 @@ public class BossBarEvent implements Listener
     public void playerLeaveBossBar(PlayerQuitEvent e)
     {
         Player p = e.getPlayer();
-        if (EdmineAPI.getInstance().getBossBar().getWithers().containsKey(p))
+        if (EdmineAPI.getInstance().getBossBarBuilder().getWithers().containsKey(p))
         {
-            EdmineAPI.getInstance().getBossBar().removePlayer(p);
+            EdmineAPI.getInstance().getBossBarBuilder().removePlayer(p);
         }
     }
 
