@@ -32,8 +32,7 @@ public class ChestManager
 		
 		// Placer des coffres aux emplacements sélectionnés
 		for (Location loc : selectedLocations) {
-			Block block = loc.getBlock();
-			block.setType(Material.CHEST);
+			loc.getBlock().setType(Material.CHEST);
 		}
 	}
 	
@@ -45,23 +44,7 @@ public class ChestManager
 	 * @param amountRareItems Un nombre d'items rares générables dans un coffre.
 	 */
 	public void fillAllChestsRandomlyInAllWorlds(List<ItemStack> commonItems, List<ItemStack> rareItems, int amountCommonItems, int amountRareItems) {
-		// Parcourir tous les chunks chargés dans le monde
-		for (World world : Bukkit.getWorlds()) {
-			for (Chunk chunk : world.getLoadedChunks()) {
-				// Parcourir tous les blocs de chaque chunk
-				for (int x = 0; x < 16; x++) {
-					for (int z = 0; z < 16; z++) {
-						for (int y = 0; y < world.getMaxHeight(); y++) {
-							Block block = chunk.getBlock(x, y, z);
-							if (block.getState() instanceof Chest) {
-								Chest chest = (Chest) block.getState();
-								fillChest(chest, commonItems, rareItems, amountCommonItems, amountRareItems); // Remplir le coffre
-							}
-						}
-					}
-				}
-			}
-		}
+		Bukkit.getWorlds().forEach(world -> this.fillAllChestsRandomlyInAWorld(world, commonItems, rareItems, amountCommonItems, amountRareItems));
 	}
 	
 	/**
@@ -101,19 +84,15 @@ public class ChestManager
 	public void fillChest(Chest chest, List<ItemStack> commonItems, List<ItemStack> rareItems, int amountCommonItems, int amountRareItems) {
 		
 		Random random = new Random();
-		
-		
-		Random randomCommon = new Random();
-		int amountCommon = randomCommon.nextInt(amountCommonItems) + 1;
-		
-		Random randomRare = new Random();
-		int amountRare = randomRare.nextInt(amountRareItems) + 1;
+
+		int amountCommon = random.nextInt(amountCommonItems) + 1;
+
+		int amountRare = random.nextInt(amountRareItems) + 1;
 		
 		// Placer les items communs
 		for (int i = 0; i < amountCommon; i++)
 		{
-			Random randomSlot = new Random();
-			int slot = randomSlot.nextInt(26) + 1;
+			int slot = random.nextInt(26) + 1;
 			int randomIndex = random.nextInt(commonItems.size());
 			chest.getBlockInventory().setItem(slot, commonItems.get(randomIndex));
 		}
@@ -121,8 +100,7 @@ public class ChestManager
 		// Placer les items rares
 		for (int i = 0; i < amountRare; i++)
 		{
-			Random randomSlot = new Random();
-			int slot = randomSlot.nextInt(26) + 1;
+			int slot = random.nextInt(26) + 1;
 			int randomIndex = random.nextInt(rareItems.size());
 			chest.getBlockInventory().setItem(slot, rareItems.get(randomIndex));
 		}
@@ -173,7 +151,7 @@ public class ChestManager
 	private List<Material> acceptSpawnBlocs()
 	{
 		List<Material> list = new ArrayList<>();
-		
+
 		list.add(Material.GRASS);
 		list.add(Material.DIRT);
 		list.add(Material.STONE);
