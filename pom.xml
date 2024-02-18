@@ -93,10 +93,10 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.29</version>
+            <version>8.0.33</version>
         </dependency>
         <dependency>
-            <groupId> org.apache.cassandra</groupId>
+            <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-all</artifactId>
             <version>0.8.1</version>
             <exclusions>
@@ -109,6 +109,12 @@
                     <artifactId>log4j</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
