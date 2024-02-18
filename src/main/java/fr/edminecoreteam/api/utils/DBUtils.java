@@ -50,7 +50,8 @@ public class DBUtils {
             } catch (SQLException event) {
                 event.printStackTrace();
             }
-        });
+        }, MultiThread.getThreadPool());
+        // MultiThread uniquement si c'est vrmt des grosses requetes SQL, inutile si elles sont petites
     }
 
     //===================================
@@ -62,22 +63,22 @@ public class DBUtils {
      * @param player Joueur
      * @return boolean
      */
-    public boolean haveAccount(Player player) {
-        try {
-            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
-            final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ed_accounts WHERE player_uuid = ?");
+    public CompletableFuture<Boolean> haveAccount(Player player) {
+        return CompletableFuture.supplyAsync(() -> {
+            try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
+                final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ed_accounts WHERE player_uuid = ? LIMIT 1");
 
-            preparedStatement.setString(1, player.getUniqueId().toString());
-            preparedStatement.executeQuery();
+                preparedStatement.setString(1, player.getUniqueId().toString());
+                preparedStatement.executeQuery();
 
-            final ResultSet resultSet = preparedStatement.getResultSet();
-
-            connection.close();
-            return resultSet.next();
-        } catch (SQLException event) {
-            event.printStackTrace();
-            return false;
-        }
+                final ResultSet resultSet = preparedStatement.getResultSet();
+                connection.close();
+                return resultSet.next();
+            } catch (SQLException event) {
+                event.printStackTrace();
+                return false;
+            }
+        });
     }
 
     //===================================

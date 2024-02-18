@@ -13,20 +13,24 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        if(!EdmineAPI.getInstance().getDbUtils().haveAccount(e.getPlayer())){
-            EdmineAPI.getInstance().getDbUtils().createAccount(e.getPlayer());
-        }
-        int soul_fragment = EdmineAPI.getInstance().getDbUtils().getInt("player_fragments_d_ames", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-        int divine_radiance = EdmineAPI.getInstance().getDbUtils().getInt("player_eclats_divins", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-        int money = EdmineAPI.getInstance().getDbUtils().getInt("player_argent", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-        int level = EdmineAPI.getInstance().getDbUtils().getInt("player_level", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-        String guild = EdmineAPI.getInstance().getDbUtils().getString("player_guild_name", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-        new PlayerManager(e.getPlayer(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
+        EdmineAPI.getInstance().getDbUtils().haveAccount(e.getPlayer()).whenComplete((haveaccount, throwable) -> {
+            if (haveaccount) {
+                int soul_fragment = EdmineAPI.getInstance().getDbUtils().getInt("player_fragments_d_ames", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
+                int divine_radiance = EdmineAPI.getInstance().getDbUtils().getInt("player_eclats_divins", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
+                int money = EdmineAPI.getInstance().getDbUtils().getInt("player_argent", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
+                int level = EdmineAPI.getInstance().getDbUtils().getInt("player_level", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
+                String guild = EdmineAPI.getInstance().getDbUtils().getString("player_guild_name", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
+                new PlayerManager(e.getPlayer(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
+            }
+            else {
+                EdmineAPI.getInstance().getDbUtils().createAccount(e.getPlayer());
+            }
+        });
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        if(PlayerManager.exist(e.getPlayer())){
+        if (PlayerManager.exist(e.getPlayer())){
             // Sauvegarde du joueur - TO DO
             PlayerManager.removePlayer(e.getPlayer());
         }
