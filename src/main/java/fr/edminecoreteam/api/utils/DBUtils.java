@@ -1,7 +1,6 @@
 package fr.edminecoreteam.api.utils;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.sql.Connection;
