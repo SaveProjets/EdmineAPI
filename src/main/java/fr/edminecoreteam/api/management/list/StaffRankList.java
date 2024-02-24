@@ -7,7 +7,7 @@ public enum StaffRankList {
     MODO("§2[MODO]"),
     NONE("§7");
 
-    private String display;
+    private final String display;
 
     StaffRankList(String display) {
         this.display = display;

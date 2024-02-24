@@ -9,35 +9,28 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class BossBarEvent implements Listener
-{
+public class BossBarEvent implements Listener {
 
     @EventHandler
-    public void onPlayerWorldChange(PlayerChangedWorldEvent e)
-    {
+    public void onPlayerWorldChange(PlayerChangedWorldEvent e) {
         Player p = e.getPlayer();
-        if (EdmineAPI.getInstance().getBossBarBuilder().getWithers().containsKey(p))
-        {
+        if (EdmineAPI.getInstance().getBossBarBuilder().getWithers().containsKey(p)) {
             EdmineAPI.getInstance().getBossBarBuilder().removePlayer(p);
             EdmineAPI.getInstance().getBossBarBuilder().putPlayer(p);
         }
     }
 
     @EventHandler
-    public void playerLeaveBossBar(PlayerQuitEvent e)
-    {
+    public void playerLeaveBossBar(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        if (EdmineAPI.getInstance().getBossBarBuilder().getWithers().containsKey(p))
-        {
+        if (EdmineAPI.getInstance().getBossBarBuilder().getWithers().containsKey(p)) {
             EdmineAPI.getInstance().getBossBarBuilder().removePlayer(p);
         }
     }
 
     @EventHandler
-    public void onWitherDamage(EntityDamageEvent e)
-    {
-        if (e.getEntityType() == EntityType.WITHER)
-        {
+    public void onWitherDamage(EntityDamageEvent e) {
+        if (e.getEntityType() == EntityType.WITHER) {
             e.setCancelled(true);
         }
     }

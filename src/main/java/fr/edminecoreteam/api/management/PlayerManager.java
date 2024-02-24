@@ -2,18 +2,40 @@ package fr.edminecoreteam.api.management;
 
 import fr.edminecoreteam.api.management.list.RankList;
 import fr.edminecoreteam.api.management.list.StaffRankList;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
 public class PlayerManager {
 
+    /**
+     * -- GETTER --
+     *  Permet de récupérer le rank du joueur
+     *
+     * @return RankList
+     */
+    @Getter
     private RankList rank;
+    /**
+     * -- GETTER --
+     *  Permet de récupérer le staff rank du joueur
+     *
+     * @return StaffRankList
+     */
+    @Getter
     private StaffRankList staffRank;
-    private int soul_fragment, divine_radiance, money, level;
+    @Getter
+    private int soul_fragment, divine_radiance, /**
+     * -- GETTER --
+     *  Permet de récupérer l'argent du joueur
+     *
+     * @return int
+     */
+            money, level;
     private String guild;
 
-    private static HashMap<Player, PlayerManager> players = new HashMap<>();
+    private static final HashMap<Player, PlayerManager> players = new HashMap<>();
 
     public PlayerManager(Player p, RankList rank, StaffRankList staffRank, int soul_fragment, int divine_radiance, int money, int level, String guild){
         this.rank = rank;
@@ -52,22 +74,6 @@ public class PlayerManager {
     }
 
     /**
-     * Permet de récupérer le rank du joueur
-     * @return RankList
-     */
-    public RankList getRank() {
-        return rank;
-    }
-
-    /**
-     * Permet de récupérer le staff rank du joueur
-     * @return StaffRankList
-     */
-    public StaffRankList getStaffRank() {
-        return staffRank;
-    }
-
-    /**
      * Permet de récupérer le nombre de soul fragment du joueur
      * @return int
      */
@@ -81,14 +87,6 @@ public class PlayerManager {
      */
     public int getDivineRadiance() {
         return divine_radiance;
-    }
-
-    /**
-     * Permet de récupérer l'argent du joueur
-     * @return int
-     */
-    public int getMoney() {
-        return money;
     }
 
     /**

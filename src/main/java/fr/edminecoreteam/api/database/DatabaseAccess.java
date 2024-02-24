@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class DatabaseAccess {
 
-    private DatabaseCredentials credentials;
+    private final DatabaseCredentials credentials;
     private HikariDataSource hikariDataSource;
 
     public DatabaseAccess(DatabaseCredentials credentials) {

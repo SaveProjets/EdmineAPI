@@ -9,9 +9,9 @@ import java.util.List;
 
 public class BookBuilder {
 
-    private String title;
-    private String author;
-    private List<String> pages;
+    private final String title;
+    private final String author;
+    private final List<String> pages;
 
     public BookBuilder(String title, String author) {
         this.title = title;

@@ -10,8 +10,7 @@ import java.util.List;
 
 public class JsonMessageBuilder {
 
-    public JsonMessageBuilder(){
-    }
+    public JsonMessageBuilder() {}
     private TextComponent textC;
 
     public JsonMessageBuilder(String msg){
@@ -78,6 +77,7 @@ public class JsonMessageBuilder {
         return this;
     }
 
+    // A FIX ICI
     public JsonMessageBuilder setExtra(List extras){
         textC.setExtra(extras);
         return this;

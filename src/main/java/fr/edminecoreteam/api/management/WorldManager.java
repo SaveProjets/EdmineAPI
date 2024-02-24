@@ -6,8 +6,10 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class WorldManager {
@@ -71,12 +73,11 @@ public class WorldManager {
      */
     public boolean deleteWorld(File path) {
         if (path.exists()) {
-            File files[] = path.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    deleteWorld(files[i]);
+            for (File file : Objects.requireNonNull(path.listFiles())) {
+                if (file.isDirectory()) {
+                    deleteWorld(file);
                 } else {
-                    files[i].delete();
+                    file.delete();
                 }
             }
         }
@@ -96,15 +97,15 @@ public class WorldManager {
                 if (source.isDirectory()) {
                     if (!target.exists())
                         target.mkdirs();
-                    String files[] = source.list();
+                    String[] files = source.list();
                     for (String file : files) {
                         File srcFile = new File(source, file);
                         File destFile = new File(target, file);
                         copyWorld(srcFile, destFile);
                     }
                 } else {
-                    InputStream in = new FileInputStream(source);
-                    OutputStream out = new FileOutputStream(target);
+                    InputStream in = Files.newInputStream(source.toPath());
+                    OutputStream out = Files.newOutputStream(target.toPath());
                     byte[] buffer = new byte[1024];
                     int length;
                     while ((length = in.read(buffer)) > 0)

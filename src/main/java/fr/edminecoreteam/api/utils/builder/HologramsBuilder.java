@@ -1,5 +1,6 @@
 package fr.edminecoreteam.api.utils.builder;
 
+import lombok.Getter;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -14,29 +15,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HologramsBuilder
-{
+public class HologramsBuilder {
+    @Getter
     private final HashMap<String, List<ArmorStand>> armorStands = new HashMap<>();
+    @Getter
     private final HashMap<Player, HashMap<String, List<EntityArmorStand>>> armorStandsNMS = new HashMap<>();
     private final String prefix = "EDMINE-API: ";
 
     //To Main Class
     public HologramsBuilder() { }
-    public final HashMap<String, List<ArmorStand>> getArmorStands() { return this.armorStands; }
-    public final HashMap<Player, HashMap<String, List<EntityArmorStand>>> getArmorStandsNMS() { return this.armorStandsNMS; }
-    
+
     /**
      * Permet de créer un hologram avec plusieurs lignes
      * @param id Identifiant pour récupérer plus tard l'hologram.
      * @param entry Liste de string pour le texte de l'hologram.
      * @param location Location pour positionner l'hologram.
      */
-    public void createBukkitHologram(String id, List<String> entry, Location location)
-    {
+    public void createBukkitHologram(String id, List<String> entry, Location location) {
         Location newLoc = location;
         List<ArmorStand> aList = new ArrayList<>();
-        for (String en : entry)
-        {
+        for (String en : entry) {
             newLoc = new Location(newLoc.getWorld(), newLoc.getX(), newLoc.getY() - 0.3f, newLoc.getZ());
             ArmorStand armorStand = (ArmorStand) Bukkit.getWorld(location.getWorld().getName()).spawnEntity(newLoc, EntityType.ARMOR_STAND);
             armorStand.setVisible(false);
@@ -55,16 +53,12 @@ public class HologramsBuilder
      * Permet de supprimé un hologram avec ses lignes
      * @param id Identifiant pour récupérer l'hologram.
      */
-    public void removeBukkitHolgram(String id)
-    {
-        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet())
-        {
+    public void removeBukkitHolgram(String id) {
+        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet()) {
             String key = en.getKey();
-            if (key.equalsIgnoreCase(id))
-            {
+            if (key.equalsIgnoreCase(id)) {
                 int entities = 0;
-                for (ArmorStand stand : en.getValue())
-                {
+                for (ArmorStand stand : en.getValue()) {
                     stand.remove();
                     entities++;
                 }
@@ -81,14 +75,11 @@ public class HologramsBuilder
      * @param getLine Ligne a modifier (Min 1).
      * @param newLine Nouveau texte.
      */
-    public void updateLineBukkitHolograms(String id, int getLine, String newLine)
-    {
+    public void updateLineBukkitHolograms(String id, int getLine, String newLine) {
         int line = getLine - 1;
-        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet())
-        {
+        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet()) {
             String key = en.getKey();
-            if (key.equalsIgnoreCase(id))
-            {
+            if (key.equalsIgnoreCase(id)) {
                 ArmorStand armorStand = en.getValue().get(line);
                 armorStand.setCustomName(newLine);
                 System.out.println(prefix + "Update Hologram Line (" + getLine + ") with ID: " + id);
@@ -102,17 +93,12 @@ public class HologramsBuilder
      * @param id Identifiant pour récupérer l'hologram a modifier.
      * @param getLine Ligne a supprimer (Min 1).
      */
-    public void removeLineBukkitHolograms(String id, int getLine)
-    {
-        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet())
-        {
+    public void removeLineBukkitHolograms(String id, int getLine) {
+        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet()) {
             String key = en.getKey();
-            if (key.equalsIgnoreCase(id))
-            {
-                for(int i = 0; i < en.getValue().size(); i++)
-                {
-                    if (i > getLine)
-                    {
+            if (key.equalsIgnoreCase(id)) {
+                for(int i = 0; i < en.getValue().size(); i++) {
+                    if (i > getLine) {
                         ArmorStand armorStand = en.getValue().get(i);
                         Location loc = new Location(armorStand.getWorld(), armorStand.getLocation().getX(), armorStand.getLocation().getY() + 0.3f, armorStand.getLocation().getZ());
                         armorStand.teleport(loc);
@@ -129,16 +115,12 @@ public class HologramsBuilder
      * @param id Identifiant pour récupérer l'hologram a modifier.
      * @param location Nouvelle location.
      */
-    public void teleportBukkitHolograms(String id, Location location)
-    {
+    public void teleportBukkitHolograms(String id, Location location) {
         Location newLoc = location;
-        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet())
-        {
+        for (Map.Entry<String, List<ArmorStand>> en : armorStands.entrySet()) {
             String key = en.getKey();
-            if (key.equalsIgnoreCase(id))
-            {
-                for (ArmorStand stand : en.getValue())
-                {
+            if (key.equalsIgnoreCase(id)) {
+                for (ArmorStand stand : en.getValue()) {
                     newLoc = new Location(newLoc.getWorld(), newLoc.getX(), newLoc.getY() - 0.3f, newLoc.getZ());
                     stand.teleport(newLoc);
                 }
@@ -153,12 +135,10 @@ public class HologramsBuilder
      * @param entry Liste de string pour le texte de l'hologram.
      * @param location Location pour positionner l'hologram.
      */
-    public void createPacketHologram(Player p, String id, List<String> entry, Location location)
-    {
+    public void createPacketHologram(Player p, String id, List<String> entry, Location location) {
         Location newLoc = location;
         List<EntityArmorStand> aList = new ArrayList<>();
-        for (String en : entry)
-        {
+        for (String en : entry) {
             WorldServer ws = ((CraftWorld)newLoc.getWorld()).getHandle();
             EntityArmorStand nmsStand = new EntityArmorStand(ws);
             newLoc = new Location(newLoc.getWorld(), newLoc.getX(), newLoc.getY() - 0.3f, newLoc.getZ());
@@ -169,7 +149,7 @@ public class HologramsBuilder
             nmsStand.setCustomNameVisible(true);
             nmsStand.setGravity(false);
             aList.add(nmsStand);
-            PacketPlayOutSpawnEntityLiving sendPacket = new PacketPlayOutSpawnEntityLiving((EntityLiving) nmsStand);
+            PacketPlayOutSpawnEntityLiving sendPacket = new PacketPlayOutSpawnEntityLiving(nmsStand);
             ((CraftPlayer)p).getHandle().playerConnection.sendPacket(sendPacket);
         }
         HashMap<String, List<EntityArmorStand>> innerMap = new HashMap<>();
@@ -183,21 +163,15 @@ public class HologramsBuilder
      * @param p Le joueur qui va recevoir les packets.
      * @param id Identifiant pour récupérer plus tard l'hologram.
      */
-    public void removePacketHologram(Player p, String id)
-    {
-        for (Map.Entry<Player, HashMap<String, List<EntityArmorStand>>> en : armorStandsNMS.entrySet())
-        {
+    public void removePacketHologram(Player p, String id) {
+        for (Map.Entry<Player, HashMap<String, List<EntityArmorStand>>> en : armorStandsNMS.entrySet()) {
             Player key = en.getKey();
-            if (key == p)
-            {
+            if (key == p) {
                 HashMap<String, List<EntityArmorStand>> innerMap = en.getValue();
-                for (Map.Entry<String, List<EntityArmorStand>> entry : innerMap.entrySet())
-                {
-                    if (entry.getKey().equalsIgnoreCase(id))
-                    {
+                for (Map.Entry<String, List<EntityArmorStand>> entry : innerMap.entrySet()) {
+                    if (entry.getKey().equalsIgnoreCase(id)) {
                         int packets = 0;
-                        for (EntityArmorStand entityArmorStands : entry.getValue())
-                        {
+                        for (EntityArmorStand entityArmorStands : entry.getValue()) {
                             PacketPlayOutEntityDestroy sendPacket = new PacketPlayOutEntityDestroy(entityArmorStands.getId());
                             ((CraftPlayer) p).getHandle().playerConnection.sendPacket(sendPacket);
                             packets++;

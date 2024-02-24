@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemBuilder {
-    private ItemStack is;
+    private final ItemStack is;
     public ItemBuilder(Material m){
         this(m, 1);
     }
     public ItemBuilder(ItemStack is){
-        this.is=is;
+        this.is = is;
     }
     public ItemBuilder(Material m, int amount){
         is= new ItemStack(m, amount);
@@ -54,7 +54,7 @@ public class ItemBuilder {
             SkullMeta im = (SkullMeta)is.getItemMeta();
             im.setOwner(owner);
             is.setItemMeta(im);
-        } catch(ClassCastException expected){}
+        } catch(ClassCastException ignored){}
         return this;
     }
     public ItemBuilder addEnchant(Enchantment ench, int level){
@@ -138,7 +138,7 @@ public class ItemBuilder {
             LeatherArmorMeta im = (LeatherArmorMeta)is.getItemMeta();
             im.setColor(color);
             is.setItemMeta(im);
-        }catch(ClassCastException expected){}
+        }catch(ClassCastException ignored){}
         return this;
     }
 
