@@ -1,20 +1,21 @@
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\JsonMessageBuilder.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\HologramsBuilder.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\ItemBuilder.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseCredentials.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseManager.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\event\PlayerEvents.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\list\RankList.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\BookBuilder.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\BossBarBuilder.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\CheckServerType.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\WorldManager.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\event\BossBarEvent.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\DBUtils.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\EdmineAPI.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\serializer\InventorySerializer.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\ChestManager.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\serializer\LocationSerializer.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\PlayerManager.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseAccess.java
-C:\Users\iammehdib\Documents\JavaProject\skylymc\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\list\StaffRankList.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\serializer\LocationSerializer.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\WorldManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\list\RankList.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\serializer\InventorySerializer.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\DBUtils.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\MultiThread.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseAccess.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseCredentials.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\JsonMessageBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\list\StaffRankList.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\BookBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\PlayerManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\BossBarBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\EdmineAPI.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\ItemBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\event\PlayerEvents.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\ChestManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\HologramsBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\event\BossBarEvent.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\CheckServerType.java

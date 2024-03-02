@@ -1,21 +1,18 @@
 package fr.edminecoreteam.api.database;
 
-import fr.edminecoreteam.api.EdmineAPI;
-import lombok.Getter;
+import fr.edminecoreteam.api.EdmineAPISpigot;
 
-@Getter
 public enum DatabaseManager {
 
-    EDMINE(new DatabaseCredentials(EdmineAPI.getInstance().getConfig().getString("mysql.host"),
-            EdmineAPI.getInstance().getConfig().getString("mysql.user"),
-            EdmineAPI.getInstance().getConfig().getString("mysql.password"),
-            EdmineAPI.getInstance().getConfig().getString("mysql.database"),
-            3306));
+    EDMINE(new DatabaseCredentials(EdmineAPISpigot.getInstance().getConfig().getString("mysql.host"), EdmineAPISpigot.getInstance().getConfig().getString("mysql.user"), EdmineAPISpigot.getInstance().getConfig().getString("mysql.password"), EdmineAPISpigot.getInstance().getConfig().getString("mysql.database"), 3306));
 
-    private final DatabaseAccess databaseAccess;
-
+    private DatabaseAccess databaseAccess;
     DatabaseManager(DatabaseCredentials credentials){
         this.databaseAccess = new DatabaseAccess(credentials);
+    }
+
+    public DatabaseAccess getDatabaseAccess(){
+        return databaseAccess;
     }
 
     public static void initAllDatabaseConnection(){
@@ -24,7 +21,7 @@ public enum DatabaseManager {
         }
     }
     public static void closeAllDatabaseConnections(){
-        for (DatabaseManager databaseManager : values()) {
+        for(DatabaseManager databaseManager : values()){
             databaseManager.databaseAccess.closePool();
         }
     }

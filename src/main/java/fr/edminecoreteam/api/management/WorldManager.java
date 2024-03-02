@@ -51,7 +51,6 @@ public class WorldManager {
         File file = new File("game/uid.dat");
         file.delete();
         Bukkit.getServer().createWorld(new WorldCreator("game"));
-        Bukkit.getServer().unloadWorld(Bukkit.getWorld("game"), true);
     }
 
     /**

@@ -2,32 +2,28 @@ package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
 import fr.edminecoreteam.api.event.PlayerEvents;
-import fr.edminecoreteam.api.event.GuiManager;
 import fr.edminecoreteam.api.management.WorldManager;
 import fr.edminecoreteam.api.utils.DBUtils;
 import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
 import fr.edminecoreteam.api.event.BossBarEvent;
 import fr.edminecoreteam.api.utils.builder.HologramsBuilder;
-import fr.edminecoreteam.api.utils.builder.gui.Gui;
 import fr.minuskube.inv.InventoryManager;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public final class EdmineAPI extends JavaPlugin {
+public final class EdmineAPISpigot extends JavaPlugin {
 
-    @Getter
-    private static EdmineAPI instance;
+    private static EdmineAPISpigot instance;
     private HologramsBuilder hologramsBuilder;
-    @Getter
     private WorldManager worldManager;
     private BossBarBuilder bossBar;
-    @Getter
     private DBUtils dbUtils;
     private final InventoryManager smartInvManager = new InventoryManager(this);
-    @Getter
-    private GuiManager guiManager;
+
+    public static EdmineAPISpigot getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -41,17 +37,10 @@ public final class EdmineAPI extends JavaPlugin {
         this.bossBar = new BossBarBuilder("§r", 300);
         this.dbUtils = new DBUtils();
         this.worldManager = new WorldManager();
-        Bukkit.getLogger().info("Loading listenes...");
-        this.registerListeners();
-
-        Bukkit.getLogger().info("Managers loaded successfully.");
-        DatabaseManager.initAllDatabaseConnection();
-    }
-
-    private void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
-        this.guiManager = new GuiManager(this);
+        Bukkit.getLogger().info("Managers loaded successfully.");
+        DatabaseManager.initAllDatabaseConnection();
     }
 
     @Override
@@ -61,4 +50,11 @@ public final class EdmineAPI extends JavaPlugin {
     public HologramsBuilder getHologramBuilder() { return hologramsBuilder; }
     public BossBarBuilder getBossBarBuilder() { return bossBar; }
 
+    public WorldManager getWorldManager() {
+        return worldManager;
+    }
+
+    public DBUtils getDbUtils() {
+        return dbUtils;
+    }
 }

@@ -6,6 +6,7 @@ fr\edminecoreteam\api\utils\CheckServerType.class
 fr\edminecoreteam\api\utils\builder\BossBarBuilder$1.class
 fr\edminecoreteam\api\utils\builder\ItemBuilder.class
 fr\edminecoreteam\api\management\list\StaffRankList.class
+fr\edminecoreteam\api\utils\MultiThread.class
 fr\edminecoreteam\api\database\DatabaseAccess.class
 fr\edminecoreteam\api\utils\builder\BookBuilder.class
 fr\edminecoreteam\api\utils\builder\JsonMessageBuilder.class
