@@ -1,6 +1,7 @@
 package fr.edminecoreteam.api.event;
 
 import fr.edminecoreteam.api.utils.builder.gui.Gui;
+import fr.edminecoreteam.api.utils.builder.gui.GuiButton;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -47,27 +48,21 @@ public class GuiManager implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void onClick(InventoryClickEvent e) {
-        if (e.getCurrentItem() == null) return;
-        Optional.ofNullable(getGuis().get(e.getWhoClicked().getUniqueId()))
-                .filter(gui -> e.getInventory().equals(gui.getInventory()))
-                .ifPresent(gui -> {
-                    if (e.getClick() == ClickType.SHIFT_RIGHT || e.getClick() == ClickType.SHIFT_LEFT) {
-                        e.setCancelled(true);
-                        return;
-                    }
-                    if (!e.getClickedInventory().equals(gui.getInventory())) return;
-                    if (e.getCurrentItem().getType() == Material.SKULL_ITEM)
-                        gui.getButtons().entrySet().stream()
-                                .filter(entry -> entry.getValue().getItemStack().hasItemMeta() && entry.getValue().getItemStack().getItemMeta().getDisplayName().equals(e.getCurrentItem().getItemMeta().getDisplayName()))
-                                .findFirst().ifPresent(entry -> entry.getValue().getClickEvent().accept(e));
-                    else
-                        gui.getButtons().entrySet().stream()
-                                .filter(entry -> entry.getValue().getItemStack().equals(e.getCurrentItem()))
-                                .findFirst()
-                                .ifPresent(entry -> entry.getValue().getClickEvent().accept(e));
+        if (e.getCurrentItem() != null)
+            Optional.ofNullable(getGuis().get(e.getWhoClicked().getUniqueId()))
+                    .ifPresent(gui -> {
+                        if (!e.getClickedInventory().equals(gui.getInventory()))
+                            return;
 
-                    e.setCancelled(true);
-                });
+                        e.setCancelled(true);
+                        if (e.getClick() == ClickType.SHIFT_RIGHT || e.getClick() == ClickType.SHIFT_LEFT) {
+                            return;
+                        }
+                        final GuiButton guiButton = gui.getButtons().get(e.getSlot());
+                        if (guiButton != null) {
+                            guiButton.getClickEvent().accept(e);
+                        }
+                    });
     }
 
     @EventHandler
