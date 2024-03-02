@@ -1,6 +1,7 @@
 package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
+import fr.edminecoreteam.api.event.GuiManager;
 import fr.edminecoreteam.api.event.PlayerEvents;
 import fr.edminecoreteam.api.management.WorldManager;
 import fr.edminecoreteam.api.utils.DBUtils;
@@ -8,22 +9,23 @@ import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
 import fr.edminecoreteam.api.event.BossBarEvent;
 import fr.edminecoreteam.api.utils.builder.HologramsBuilder;
 import fr.minuskube.inv.InventoryManager;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public final class EdmineAPISpigot extends JavaPlugin {
 
+    @Getter
     private static EdmineAPISpigot instance;
     private HologramsBuilder hologramsBuilder;
     private WorldManager worldManager;
     private BossBarBuilder bossBar;
+    @Getter
     private DBUtils dbUtils;
     private final InventoryManager smartInvManager = new InventoryManager(this);
-
-    public static EdmineAPISpigot getInstance() {
-        return instance;
-    }
+    @Getter
+    private GuiManager guiManager;
 
     @Override
     public void onEnable() {
@@ -37,6 +39,7 @@ public final class EdmineAPISpigot extends JavaPlugin {
         this.bossBar = new BossBarBuilder("§r", 300);
         this.dbUtils = new DBUtils();
         this.worldManager = new WorldManager();
+        this.guiManager = new GuiManager(this);
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
@@ -49,12 +52,4 @@ public final class EdmineAPISpigot extends JavaPlugin {
     }
     public HologramsBuilder getHologramBuilder() { return hologramsBuilder; }
     public BossBarBuilder getBossBarBuilder() { return bossBar; }
-
-    public WorldManager getWorldManager() {
-        return worldManager;
-    }
-
-    public DBUtils getDbUtils() {
-        return dbUtils;
-    }
 }

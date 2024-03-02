@@ -1,6 +1,7 @@
 package fr.edminecoreteam.api.utils.builder.gui;
 
-import fr.edminecoreteam.api.EdmineAPI;
+import fr.edminecoreteam.api.EdmineAPISpigot;
+import fr.edminecoreteam.api.utils.builder.gui.GuiButton;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -14,11 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
-
-/*
- GUI BASED FROM https://github.com/Joupiter
- OPTIMISED BY GONOTAKU/GONPVP
- */
 
 @Getter
 @Setter
@@ -39,11 +35,9 @@ public abstract class Gui<P extends JavaPlugin> {
         this.rows = rows;
         this.buttons = new ConcurrentHashMap<>();
         this.inventory = Bukkit.createInventory(null, rows * 9, inventoryName);
-        // OPTIMISATION
-        // update();
         setCloseInventory(event -> {
             onEnd();
-            EdmineAPI.getInstance().getGuiManager().getGuis().remove(event.getPlayer().getUniqueId());
+            EdmineAPISpigot.getInstance().getGuiManager().getGuis().remove(event.getPlayer().getUniqueId());
         });
     }
 
@@ -67,8 +61,22 @@ public abstract class Gui<P extends JavaPlugin> {
                 .forEach(i -> setItem(i, button));
     }
 
-    public void fillAllInventorywaw(GuiButton button) {
-        IntStream.range(0, getSize()).forEach(i -> setItem(i, button));
+    public void fillAllInventory(ItemStack button) {
+        IntStream.range(0, getSize())
+                .filter(i -> getItem(i) != null)
+                .forEach(i -> setItem(i, button));
+    }
+
+    public void fillAllInventory(GuiButton button, int minimumSlot) {
+        IntStream.range(minimumSlot, getSize())
+                .filter(i -> getItem(i) != null)
+                .forEach(i -> setItem(i, button));
+    }
+
+    public void fillAllInventory(ItemStack button, int minimumSlot) {
+        IntStream.range(minimumSlot, getSize())
+                .filter(i -> getItem(i) != null)
+                .forEach(i -> setItem(i, button));
     }
 
     public void setItem(final int slot, final ItemStack itemstack) {
@@ -125,6 +133,10 @@ public abstract class Gui<P extends JavaPlugin> {
     public void removeItem(final int slot) {
         getButtons().remove(slot);
         getInventory().remove(getInventory().getItem(slot));
+    }
+
+    public void removeAction(final int slot) {
+        getButtons().remove(slot);
     }
 
     public void clear() {
