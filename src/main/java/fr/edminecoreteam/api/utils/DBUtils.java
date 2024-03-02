@@ -1,6 +1,7 @@
 package fr.edminecoreteam.api.utils;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -54,6 +55,26 @@ public class DBUtils {
         // MultiThread uniquement si c'est vrmt des grosses requetes SQL, inutile si elles sont petites
     }
 
+    // Exemple SIMPLE de code possible sql à éxécuter en asynchrone
+    public void createAccount(ProxiedPlayer player) {
+        CompletableFuture.runAsync(() -> {
+            // Création du compte
+            try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
+                final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection) VALUES (?,?,?,?)");
+
+                preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id"));
+                preparedStatement.setString(2, player.getUniqueId().toString());
+                preparedStatement.setString(3, player.getName());
+                preparedStatement.setString(4, new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime()));
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException event) {
+                event.printStackTrace();
+            }
+        }, MultiThread.getThreadPool());
+        // MultiThread uniquement si c'est vrmt des grosses requetes SQL, inutile si elles sont petites
+    }
+
     //===================================
     // Base De Données - Vérification
     //===================================
@@ -64,6 +85,29 @@ public class DBUtils {
      * @return boolean
      */
     public CompletableFuture<Boolean> haveAccount(Player player) {
+        return CompletableFuture.supplyAsync(() -> {
+            try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
+                final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ed_accounts WHERE player_uuid = ? LIMIT 1");
+
+                preparedStatement.setString(1, player.getUniqueId().toString());
+                preparedStatement.executeQuery();
+
+                final ResultSet resultSet = preparedStatement.getResultSet();
+                connection.close();
+                return resultSet.next();
+            } catch (SQLException event) {
+                event.printStackTrace();
+                return false;
+            }
+        });
+    }
+
+    /**
+     * Permet de verifier si un joueur à un compte dans la base de donnée
+     * @param player Joueur
+     * @return boolean
+     */
+    public CompletableFuture<Boolean> haveAccount(ProxiedPlayer player) {
         return CompletableFuture.supplyAsync(() -> {
             try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
                 final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ed_accounts WHERE player_uuid = ? LIMIT 1");

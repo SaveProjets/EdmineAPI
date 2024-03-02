@@ -1,10 +1,10 @@
 package fr.edminecoreteam.api.database;
 
-import fr.edminecoreteam.api.EdmineAPI;
+import fr.edminecoreteam.api.EdmineAPISpigot;
 
 public enum DatabaseManager {
 
-    EDMINE(new DatabaseCredentials(EdmineAPI.getInstance().getConfig().getString("mysql.host"), EdmineAPI.getInstance().getConfig().getString("mysql.user"), EdmineAPI.getInstance().getConfig().getString("mysql.password"), EdmineAPI.getInstance().getConfig().getString("mysql.database"), 3306));
+    EDMINE(new DatabaseCredentials(EdmineAPISpigot.getInstance().getConfig().getString("mysql.host"), EdmineAPISpigot.getInstance().getConfig().getString("mysql.user"), EdmineAPISpigot.getInstance().getConfig().getString("mysql.password"), EdmineAPISpigot.getInstance().getConfig().getString("mysql.database"), 3306));
 
     private DatabaseAccess databaseAccess;
     DatabaseManager(DatabaseCredentials credentials){

@@ -1,6 +1,6 @@
 package fr.edminecoreteam.api.utils.builder;
 
-import fr.edminecoreteam.api.EdmineAPI;
+import fr.edminecoreteam.api.EdmineAPISpigot;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
 import org.bukkit.Location;
@@ -32,7 +32,7 @@ public class BossBarBuilder extends BukkitRunnable
     {
         this.title = title;
         this.health = health;
-        runTaskTimer(EdmineAPI.getInstance(), 0, 10);
+        runTaskTimer(EdmineAPISpigot.getInstance(), 0, 10);
     }
     
     /**
@@ -43,7 +43,7 @@ public class BossBarBuilder extends BukkitRunnable
     {
         Location location = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
         Location toSpawn = location.add(location.getDirection().multiply(5));
-        Wither wither = (Wither) EdmineAPI.getInstance().getServer().getWorld(p.getWorld().getName()).spawnEntity(toSpawn, EntityType.WITHER);
+        Wither wither = (Wither) EdmineAPISpigot.getInstance().getServer().getWorld(p.getWorld().getName()).spawnEntity(toSpawn, EntityType.WITHER);
 
         wither.setCustomName(title);
         wither.setHealth(wither.getMaxHealth());
@@ -71,7 +71,7 @@ public class BossBarBuilder extends BukkitRunnable
                     run();
                 }
             }
-        }.runTaskTimer((Plugin) EdmineAPI.getInstance(), 0L, 5L);
+        }.runTaskTimer((Plugin) EdmineAPISpigot.getInstance(), 0L, 5L);
     }
     
     /**
@@ -188,7 +188,7 @@ public class BossBarBuilder extends BukkitRunnable
             {
                 wither.teleport(location);
             }
-            for(Player on : EdmineAPI.getInstance().getServer().getOnlinePlayers())
+            for(Player on : EdmineAPISpigot.getInstance().getServer().getOnlinePlayers())
             {
                 if (!on.getName().equalsIgnoreCase(player.getName()))
                 {

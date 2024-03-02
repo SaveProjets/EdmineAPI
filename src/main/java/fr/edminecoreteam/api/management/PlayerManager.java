@@ -2,9 +2,11 @@ package fr.edminecoreteam.api.management;
 
 import fr.edminecoreteam.api.management.list.RankList;
 import fr.edminecoreteam.api.management.list.StaffRankList;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class PlayerManager {
 
@@ -13,8 +15,19 @@ public class PlayerManager {
     private int soul_fragment, divine_radiance, money, level;
     private String guild;
 
-    private static HashMap<Player, PlayerManager> players = new HashMap<>();
+    private static HashMap<UUID, PlayerManager> players = new HashMap<>();
 
+    /**
+     * Permet d'instancier un PlayerManager à partir d'une instance de Player
+     * @param p Joueur
+     * @param rank Rank du joueur
+     * @param staffRank Staff Rank du joueur
+     * @param soul_fragment soul_fragment du joueur
+     * @param divine_radiance divine_radiance du joueur
+     * @param money money du joueur
+     * @param level level du joueur
+     * @param guild guild du joueur
+     */
     public PlayerManager(Player p, RankList rank, StaffRankList staffRank, int soul_fragment, int divine_radiance, int money, int level, String guild){
         this.rank = rank;
         this.staffRank = staffRank;
@@ -23,7 +36,51 @@ public class PlayerManager {
         this.money = money;
         this.level = level;
         this.guild = guild;
-        players.put(p, this);
+        players.put(p.getUniqueId(), this);
+    }
+
+    /**
+     * Permet d'instancier un PlayerManager à partir d'une instance de ProxiedPlayer
+     * @param p Joueur
+     * @param rank Rank du joueur
+     * @param staffRank Staff Rank du joueur
+     * @param soul_fragment soul_fragment du joueur
+     * @param divine_radiance divine_radiance du joueur
+     * @param money money du joueur
+     * @param level level du joueur
+     * @param guild guild du joueur
+     */
+    public PlayerManager(ProxiedPlayer p, RankList rank, StaffRankList staffRank, int soul_fragment, int divine_radiance, int money, int level, String guild){
+        this.rank = rank;
+        this.staffRank = staffRank;
+        this.soul_fragment = soul_fragment;
+        this.divine_radiance = divine_radiance;
+        this.money = money;
+        this.level = level;
+        this.guild = guild;
+        players.put(p.getUniqueId(), this);
+    }
+
+    /**
+     * Permet d'instancier un PlayerManager à partir d'une instance de son UUID
+     * @param pUUID UUID du joueur
+     * @param rank Rank du joueur
+     * @param staffRank Staff Rank du joueur
+     * @param soul_fragment soul_fragment du joueur
+     * @param divine_radiance divine_radiance du joueur
+     * @param money money du joueur
+     * @param level level du joueur
+     * @param guild guild du joueur
+     */
+    public PlayerManager(UUID pUUID, RankList rank, StaffRankList staffRank, int soul_fragment, int divine_radiance, int money, int level, String guild){
+        this.rank = rank;
+        this.staffRank = staffRank;
+        this.soul_fragment = soul_fragment;
+        this.divine_radiance = divine_radiance;
+        this.money = money;
+        this.level = level;
+        this.guild = guild;
+        players.put(pUUID, this);
     }
 
     /**
@@ -36,11 +93,36 @@ public class PlayerManager {
     }
 
     /**
-     * Permet de verifier si un joueur existe
+     * Permet de récupérer le PlayerManager du joueur
+     * @param p ProxiedPlayer
+     * @return PlayerManager
+     */
+    public static PlayerManager getPlayer(ProxiedPlayer p){
+        return players.get(p);
+    }
+
+    /**
+     * Permet de verifier si un joueur existe (via Player)
      * @param p Player
      */
     public static boolean exist(Player p){
-        return players.containsKey(p);
+        return players.containsKey(p.getUniqueId());
+    }
+
+    /**
+     * Permet de verifier si un joueur existe (via ProxiedPlayer)
+     * @param p Player
+     */
+    public static boolean exist(ProxiedPlayer p){
+        return players.containsKey(p.getUniqueId());
+    }
+
+    /**
+     * Permet de verifier si un joueur existe (via UUID)
+     * @param pUUID UUID du Player
+     */
+    public static boolean exist(UUID pUUID){
+        return players.containsKey(pUUID);
     }
 
     /**
@@ -48,8 +130,22 @@ public class PlayerManager {
      * @param p Player
      */
     public static void removePlayer(Player p){
-        players.remove(p);
+        players.remove(p.getUniqueId());
     }
+
+    /**
+     * Permet de retirer un joueur (bungeecord)
+     * @param p ProxiedPlayer
+     */
+
+    public static void removePlayer(ProxiedPlayer p){players.remove(p.getUniqueId());}
+
+    /**
+     * Permet de retirer un joueur (UUID)
+     * @param pUUID UUID du joueur
+     */
+
+    public static void removePlayer(UUID pUUID){players.remove(pUUID);}
 
     /**
      * Permet de récupérer le rank du joueur

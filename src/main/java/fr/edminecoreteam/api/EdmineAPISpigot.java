@@ -7,23 +7,21 @@ import fr.edminecoreteam.api.utils.DBUtils;
 import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
 import fr.edminecoreteam.api.event.BossBarEvent;
 import fr.edminecoreteam.api.utils.builder.HologramsBuilder;
-import fr.edminecoreteam.api.utils.serializer.LocationSerializer;
 import fr.minuskube.inv.InventoryManager;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public final class EdmineAPI extends JavaPlugin {
+public final class EdmineAPISpigot extends JavaPlugin {
 
-    private static EdmineAPI instance;
+    private static EdmineAPISpigot instance;
     private HologramsBuilder hologramsBuilder;
     private WorldManager worldManager;
     private BossBarBuilder bossBar;
     private DBUtils dbUtils;
     private final InventoryManager smartInvManager = new InventoryManager(this);
 
-    public static EdmineAPI getInstance() {
+    public static EdmineAPISpigot getInstance() {
         return instance;
     }
 
