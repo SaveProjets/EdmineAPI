@@ -1,7 +1,7 @@
 package fr.edminecoreteam.api;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
-import fr.edminecoreteam.api.event.PlayerEvents;
+import fr.edminecoreteam.api.event.PlayerEventsSpigot;
 import fr.edminecoreteam.api.management.WorldManager;
 import fr.edminecoreteam.api.utils.DBUtils;
 import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
@@ -38,7 +38,7 @@ public final class EdmineAPISpigot extends JavaPlugin {
         this.dbUtils = new DBUtils();
         this.worldManager = new WorldManager();
         Bukkit.getPluginManager().registerEvents(new BossBarEvent(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerEventsSpigot(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
         DatabaseManager.initAllDatabaseConnection();
     }

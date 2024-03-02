@@ -4,12 +4,12 @@ import fr.edminecoreteam.api.EdmineAPISpigot;
 import fr.edminecoreteam.api.management.PlayerManager;
 import fr.edminecoreteam.api.management.list.RankList;
 import fr.edminecoreteam.api.management.list.StaffRankList;
+import fr.edminecoreteam.api.utils.CheckServerType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-public class PlayerEvents implements Listener {
+public class PlayerEventsSpigot implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
