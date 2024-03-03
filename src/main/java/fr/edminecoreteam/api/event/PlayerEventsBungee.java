@@ -20,7 +20,7 @@ public class PlayerEventsBungee implements Listener {
                 int money = EdmineAPIBungee.getInstance().getDbUtils().getInt("player_argent", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
                 int level = EdmineAPIBungee.getInstance().getDbUtils().getInt("player_level", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
                 String guild = EdmineAPIBungee.getInstance().getDbUtils().getString("player_guild_name", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-                new PlayerManager(e.getPlayer().getUniqueId(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
+                new PlayerManager(e.getPlayer(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
             }else{
                 EdmineAPIBungee.getInstance().getDbUtils().createAccount(e.getPlayer());
             }
@@ -29,9 +29,9 @@ public class PlayerEventsBungee implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerDisconnectEvent e){
-        if(PlayerManager.exist(e.getPlayer().getUniqueId())){
+        if(PlayerManager.exist(e.getPlayer())){
             // Sauvegarde du joueur - TO DO
-            PlayerManager.removePlayer(e.getPlayer().getUniqueId());
+            PlayerManager.removePlayer(e.getPlayer());
         }
     }
 }

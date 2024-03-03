@@ -19,7 +19,7 @@ public class PlayerEventsSpigot implements Listener {
                 int money = EdmineAPISpigot.getInstance().getDbUtils().getInt("player_argent", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
                 int level = EdmineAPISpigot.getInstance().getDbUtils().getInt("player_level", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
                 String guild = EdmineAPISpigot.getInstance().getDbUtils().getString("player_guild_name", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-                new PlayerManager(e.getPlayer().getUniqueId(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
+                new PlayerManager(e.getPlayer(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
             }
             else {
                 EdmineAPISpigot.getInstance().getDbUtils().createAccount(e.getPlayer());
@@ -29,9 +29,9 @@ public class PlayerEventsSpigot implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        if (PlayerManager.exist(e.getPlayer().getUniqueId())){
+        if (PlayerManager.exist(e.getPlayer())){
             // Sauvegarde du joueur - TO DO
-            PlayerManager.removePlayer(e.getPlayer().getUniqueId());
+            PlayerManager.removePlayer(e.getPlayer());
         }
     }
 
