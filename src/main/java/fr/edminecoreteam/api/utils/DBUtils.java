@@ -62,7 +62,7 @@ public class DBUtils {
             try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
                 final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection) VALUES (?,?,?,?)");
 
-                preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id"));
+                preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id")+1);
                 preparedStatement.setString(2, player.getUniqueId().toString());
                 preparedStatement.setString(3, player.getName());
                 preparedStatement.setString(4, new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime()));
@@ -93,8 +93,9 @@ public class DBUtils {
                 preparedStatement.executeQuery();
 
                 final ResultSet resultSet = preparedStatement.getResultSet();
+                boolean result = resultSet.next();
                 connection.close();
-                return resultSet.next();
+                return result;
             } catch (SQLException event) {
                 event.printStackTrace();
                 return false;
@@ -116,8 +117,9 @@ public class DBUtils {
                 preparedStatement.executeQuery();
 
                 final ResultSet resultSet = preparedStatement.getResultSet();
+                boolean result = resultSet.next();
                 connection.close();
-                return resultSet.next();
+                return result;
             } catch (SQLException event) {
                 event.printStackTrace();
                 return false;

@@ -18,6 +18,8 @@ public class EdmineAPIBungee extends Plugin {
     public void onEnable() {
         getLogger().info("EDMINEAPI enabling");
 
+        instance=this;
+
         getLogger().info("Loading managers...");
         this.dbUtils = new DBUtils();
         getProxy().getPluginManager().registerListener(this, new PlayerEventsBungee());

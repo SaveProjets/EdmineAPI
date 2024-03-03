@@ -4,7 +4,6 @@ import fr.edminecoreteam.api.EdmineAPISpigot;
 import fr.edminecoreteam.api.management.PlayerManager;
 import fr.edminecoreteam.api.management.list.RankList;
 import fr.edminecoreteam.api.management.list.StaffRankList;
-import fr.edminecoreteam.api.utils.CheckServerType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -20,7 +19,7 @@ public class PlayerEventsSpigot implements Listener {
                 int money = EdmineAPISpigot.getInstance().getDbUtils().getInt("player_argent", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
                 int level = EdmineAPISpigot.getInstance().getDbUtils().getInt("player_level", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
                 String guild = EdmineAPISpigot.getInstance().getDbUtils().getString("player_guild_name", "ed_accounts", "player_uuid", e.getPlayer().getUniqueId().toString());
-                new PlayerManager(e.getPlayer(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
+                new PlayerManager(e.getPlayer().getUniqueId(), RankList.JOUEUR, StaffRankList.NONE, soul_fragment, divine_radiance, money, level, guild);
             }
             else {
                 EdmineAPISpigot.getInstance().getDbUtils().createAccount(e.getPlayer());
@@ -30,9 +29,9 @@ public class PlayerEventsSpigot implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        if (PlayerManager.exist(e.getPlayer())){
+        if (PlayerManager.exist(e.getPlayer().getUniqueId())){
             // Sauvegarde du joueur - TO DO
-            PlayerManager.removePlayer(e.getPlayer());
+            PlayerManager.removePlayer(e.getPlayer().getUniqueId());
         }
     }
 
