@@ -16,7 +16,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EdmineAPISpigot extends JavaPlugin {
 
-    @Getter
     private static EdmineAPISpigot instance;
     private HologramsBuilder hologramsBuilder;
     private WorldManager worldManager;
@@ -36,7 +35,7 @@ public final class EdmineAPISpigot extends JavaPlugin {
 
         Bukkit.getLogger().info("Loading managers...");
         this.hologramsBuilder = new HologramsBuilder();
-        this.bossBar = new BossBarBuilder("§r", 300);
+        this.bossBar = new BossBarBuilder("§rEdmine Network", 300);
         this.dbUtils = new DBUtils();
         this.worldManager = new WorldManager();
         this.guiManager = new GuiManager(this);
@@ -50,6 +49,8 @@ public final class EdmineAPISpigot extends JavaPlugin {
     public void onDisable() {
         DatabaseManager.closeAllDatabaseConnections();
     }
-    public HologramsBuilder getHologramBuilder() { return hologramsBuilder; }
-    public BossBarBuilder getBossBarBuilder() { return bossBar; }
+    public HologramsBuilder getHologramBuilder() { return this.hologramsBuilder; }
+    public BossBarBuilder getBossBarBuilder() { return this.bossBar; }
+    public WorldManager getWorldManager() { return this.worldManager; }
+    public static EdmineAPISpigot getInstance() { return EdmineAPISpigot.instance; }
 }
