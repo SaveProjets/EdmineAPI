@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>EdmineAPI</name>
+=======
+	<name>EdmineAPI [Local]</name>
+>>>>>>> 16eb08fbf60ce1f0b6ed95110bb43108f9d32fc9
 	<comment></comment>
 	<projects>
 	</projects>
@@ -10,8 +14,19 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+<<<<<<< HEAD
 	</buildSpec>
 	<natures>
+=======
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+>>>>>>> 16eb08fbf60ce1f0b6ed95110bb43108f9d32fc9
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
