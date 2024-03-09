@@ -71,7 +71,7 @@
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
-            <systemPath>${project.basedir}/lib/craftbukkit-1.8.8.jar</systemPath>
+            <systemPath>${project.basedir}/libs/craftbukkit-1.8.8.jar</systemPath>
             <type>jar</type>
             <scope>system</scope>
         </dependency>
