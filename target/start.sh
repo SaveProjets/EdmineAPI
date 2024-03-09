@@ -1,1 +1,0 @@
-screen -S SkyWarsTest -dmS java -jar -Xms1024M -Xmx8192M server.jar -o true nogui
