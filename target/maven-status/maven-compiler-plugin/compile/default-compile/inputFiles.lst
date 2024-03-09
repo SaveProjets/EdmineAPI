@@ -1,29 +1,21 @@
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\inventorys\GuiUtils.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\database\DatabaseManager.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\inventorys\GuiButton.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\JsonMessageBuilder.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\managers\PlayerManager.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\EdmineAPISpigot.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\BossBarBuilder.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\managers\lists\RankList.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\inventorys\Gui.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\inventorys\Pagination.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\MultiThread.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\inventorys\PageableGui.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\DatabaseUtils.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\events\BossBarEvent.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\database\DatabaseAccess.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\managers\ChestManager.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\managers\lists\StaffRankList.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\ItemBuilder.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\serializer\LocationSerializer.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\managers\WorldManager.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\database\DatabaseCredentials.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\EdmineAPIBungee.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\events\GuiManager.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\ServerType.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\BookBuilder.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\serializer\InventorySerializer.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\events\PlayerEvents.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\message\Message.java
-C:\Users\nanso\Desktop\Edmine Network\Workspace\EdmineAPI [Local]\src\fr\edmine\api\utils\builders\HologramsBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\serializer\LocationSerializer.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\WorldManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\list\RankList.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\serializer\InventorySerializer.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\DBUtils.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\MultiThread.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseAccess.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseCredentials.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\JsonMessageBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\list\StaffRankList.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\BookBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\PlayerManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\BossBarBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\database\DatabaseManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\EdmineAPI.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\ItemBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\event\PlayerEvents.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\management\ChestManager.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\builder\HologramsBuilder.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\event\BossBarEvent.java
+D:\IntelliJ\GitHub Folder\EdmineAPI\src\main\java\fr\edminecoreteam\api\utils\CheckServerType.java
