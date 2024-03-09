@@ -13,7 +13,6 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 public final class EdmineAPISpigot extends JavaPlugin {
 
     private static EdmineAPISpigot instance;
