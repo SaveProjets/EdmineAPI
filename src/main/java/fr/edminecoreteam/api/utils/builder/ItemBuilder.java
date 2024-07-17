@@ -4,6 +4,7 @@ import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -66,6 +67,14 @@ public class ItemBuilder {
 
     public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments){
         is.addEnchantments(enchantments);
+        return this;
+    }
+
+    public ItemBuilder hideItemFlags() {
+        ItemMeta meta = is.getItemMeta();
+        for (ItemFlag value : ItemFlag.values()) {
+            meta.addItemFlags(value);
+        }
         return this;
     }
 
