@@ -30,7 +30,7 @@ public class PlayerEventsBungee implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerDisconnectEvent e){
         if(PlayerManager.exist(e.getPlayer())){
-            // Sauvegarde du joueur - TO DO
+            EdmineAPIBungee.getInstance().getDbUtils().saveAccount(PlayerManager.getPlayer(e.getPlayer()));
             PlayerManager.removePlayer(e.getPlayer());
         }
     }

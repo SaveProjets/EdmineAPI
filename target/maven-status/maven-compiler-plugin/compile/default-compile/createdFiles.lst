@@ -7,7 +7,6 @@ fr\edminecoreteam\api\utils\DBUtils.class
 fr\edminecoreteam\api\utils\serializer\InventorySerializer.class
 fr\edminecoreteam\api\database\DatabaseManager.class
 fr\edminecoreteam\api\management\WorldManager.class
-fr\edminecoreteam\api\utils\ConfigUtils.class
 fr\edminecoreteam\api\management\list\RankList.class
 fr\edminecoreteam\api\utils\builder\HologramsBuilder.class
 fr\edminecoreteam\api\utils\CheckServerType.class

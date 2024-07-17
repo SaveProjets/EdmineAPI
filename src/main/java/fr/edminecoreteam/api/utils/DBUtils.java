@@ -1,6 +1,7 @@
 package fr.edminecoreteam.api.utils;
 
 import fr.edminecoreteam.api.database.DatabaseManager;
+import fr.edminecoreteam.api.management.PlayerManager;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -148,6 +149,20 @@ public class DBUtils {
             final PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + setting + "='" + settingsvalue + "' WHERE " + where + " = ?");
 
             preparedStatement.setString(1, whereFinding);
+            preparedStatement.executeUpdate();
+
+            connection.close();
+        } catch (SQLException event) {
+            event.printStackTrace();
+        }
+    }
+
+    public void saveAccount(PlayerManager playerManager) {
+        try {
+            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
+            final PreparedStatement preparedStatement = connection.prepareStatement("UPDATE ed_accounts SET player_fragments_d_ames = " + playerManager.getSoulFragment() + ", player_eclats_divins = " + playerManager.getDivineRadiance() + ", player_argent = " + playerManager.getMoney() + ", player_level = " + playerManager.getLevel() + ", player_guild_name = '" + playerManager.getGuild() + "' WHERE player_uuid = ?");
+
+            preparedStatement.setString(1, playerManager.getUUID().toString());
             preparedStatement.executeUpdate();
 
             connection.close();

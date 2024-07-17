@@ -15,6 +15,7 @@ public class PlayerManager {
     private StaffRankList staffRank;
     private int soul_fragment, divine_radiance, money, level;
     private String guild;
+    private UUID uuid;
 
     private static HashMap<UUID, PlayerManager> players = new HashMap<>();
 
@@ -37,6 +38,7 @@ public class PlayerManager {
         this.money = money;
         this.level = level;
         this.guild = guild;
+        this.uuid = p.getUniqueId();
         players.put(p.getUniqueId(), this);
     }
 
@@ -59,6 +61,7 @@ public class PlayerManager {
         this.money = money;
         this.level = level;
         this.guild = guild;
+        this.uuid = p.getUniqueId();
         players.put(p.getUniqueId(), this);
     }
 
@@ -81,6 +84,7 @@ public class PlayerManager {
         this.money = money;
         this.level = level;
         this.guild = guild;
+        this.uuid = pUUID;
         players.put(pUUID, this);
     }
 
@@ -327,4 +331,10 @@ public class PlayerManager {
     public void removeLevel(int level) {
         this.level -= level;
     }
+
+    /**
+     * Permet de récupérer l'uuid du joueur à partir de son PlayerManager
+     * @return UUID du joueur lié au PlayerManager
+     */
+    public UUID getUUID() { return this.uuid;}
 }
