@@ -70,11 +70,10 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder hideItemFlags() {
-        ItemMeta meta = is.getItemMeta();
-        for (ItemFlag value : ItemFlag.values()) {
-            meta.addItemFlags(value);
-        }
+    public ItemBuilder hideEnchantments(){
+        ItemMeta im = is.getItemMeta();
+        im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        is.setItemMeta(im);
         return this;
     }
 
