@@ -33,8 +33,9 @@ public class EdmineAPIBungee extends Plugin {
 
         getLogger().info("Loading managers...");
         this.dbUtils = new DBUtils();
-        getProxy().getPluginManager().registerListener(this, new PlayerEventsBungee());
 
+        createDB();
+        getProxy().getPluginManager().registerListener(this, new PlayerEventsBungee());
         getLogger().info("Managers loaded successfully.");
         DatabaseManager.initAllDatabaseConnection();
 
@@ -66,6 +67,12 @@ public class EdmineAPIBungee extends Plugin {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void createDB(){
+        dbUtils.creatingTableAccount();
+        dbUtils.creatingTableLogin();
+        dbUtils.creatingTableMaintenance();
     }
 
     public Configuration getConfig(){

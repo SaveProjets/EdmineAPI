@@ -1,1 +1,0 @@
-screen -p 0 -S SkyWarsTest -X eval "stuff "stop"\015"

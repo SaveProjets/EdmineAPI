@@ -1,4 +1,5 @@
 fr\edminecoreteam\api\utils\builder\BossBarBuilder$1.class
+fr\edminecoreteam\api\EdmineAPISpigot.class
 fr\edminecoreteam\api\management\list\StaffRankList.class
 fr\edminecoreteam\api\utils\builder\BookBuilder.class
 fr\edminecoreteam\api\management\PlayerManager.class
@@ -7,6 +8,7 @@ fr\edminecoreteam\api\utils\DBUtils.class
 fr\edminecoreteam\api\utils\serializer\InventorySerializer.class
 fr\edminecoreteam\api\database\DatabaseManager.class
 fr\edminecoreteam\api\management\WorldManager.class
+fr\edminecoreteam\api\event\PlayerEventsBungee.class
 fr\edminecoreteam\api\management\list\RankList.class
 fr\edminecoreteam\api\utils\builder\HologramsBuilder.class
 fr\edminecoreteam\api\utils\CheckServerType.class
@@ -16,5 +18,7 @@ fr\edminecoreteam\api\database\DatabaseAccess.class
 fr\edminecoreteam\api\utils\builder\JsonMessageBuilder.class
 fr\edminecoreteam\api\event\BossBarEvent.class
 fr\edminecoreteam\api\utils\serializer\LocationSerializer.class
+fr\edminecoreteam\api\EdmineAPIBungee.class
+fr\edminecoreteam\api\event\PlayerEventsSpigot.class
 fr\edminecoreteam\api\database\DatabaseCredentials.class
 fr\edminecoreteam\api\management\ChestManager.class

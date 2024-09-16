@@ -331,4 +331,55 @@ public class DBUtils {
         }
         return 0.0F;
     }
+
+
+    //===================================
+    // Base De Données - Création table
+    //===================================
+
+    /**
+     * Création de la table ed_accounts
+     */
+    public void creatingTableAccount() {
+        try {
+            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
+            PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_accounts (`player_id` int(11) AUTO_INCREMENT, `player_name` varchar(255) NOT NULL, `player_uuid` varchar(255) UNIQUE, `player_fragments_d_ames` int(11), `player_eclats_divins` float, `player_argent` float, `player_level` int(11), `player_xp_need_to_level_up` int(11), `player_time_of_played` varchar(255), `player_first_connection` varchar(255), `player_parrain` varchar(255), `player_finish_quetes` int(11), `player_finish_succes` int(11), `player_guild_name` varchar(255), `player_total_cosmetics` int(11), `player_total_played_partys` int(11), PRIMARY KEY (`player_id`)) CHARACTER SET utf8");
+            stm.execute();
+            stm.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Création de la table ed_login
+     */
+    public void creatingTableLogin() {
+        try {
+            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
+            PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_login (`player_uuid` varchar(255), `player_password` varchar(255), `lastIP` varchar(255), `lastAuth` varchar(255),`isOnline` int(11), PRIMARY KEY (`player_uuid`), CONSTRAINT fk_player_uuid FOREIGN KEY (player_uuid) REFERENCES ed_accounts(player_uuid)) CHARACTER SET utf8");
+            stm.execute();
+            stm.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Création de la table ed_maintenance
+     */
+    public void creatingTableMaintenance() {
+        try {
+            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
+            PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_maintenance (`player_uuid` varchar(255) NOT NULL, PRIMARY KEY (`player_name`), UNIQUE(`player_name`), INDEX(`player_name`)) CHARACTER SET utf8");
+            stm.execute();
+            stm.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
