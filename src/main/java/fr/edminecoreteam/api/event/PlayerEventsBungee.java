@@ -8,10 +8,11 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
 
 public class PlayerEventsBungee implements Listener {
 
-    @EventHandler
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void onJoin(ServerConnectEvent e){
         EdmineAPIBungee.getInstance().getDbUtils().haveAccount(e.getPlayer()).whenComplete((haveaccount, throwable) -> {
             if(haveaccount){

@@ -64,10 +64,11 @@ public class DBUtils {
                 final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection) VALUES (?,?,?,?)");
 
                 preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id")+1);
-                preparedStatement.setString(2, player.getUniqueId().toString());
-                preparedStatement.setString(3, player.getName());
+                preparedStatement.setString(2, player.getName());
+                preparedStatement.setString(3, player.getUniqueId().toString());
                 preparedStatement.setString(4, new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime()));
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
 
             } catch (SQLException event) {
                 event.printStackTrace();
@@ -375,6 +376,21 @@ public class DBUtils {
         try {
             final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_maintenance (`player_uuid` varchar(255) NOT NULL, PRIMARY KEY (`player_name`), UNIQUE(`player_name`), INDEX(`player_name`)) CHARACTER SET utf8");
+            stm.execute();
+            stm.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Création de la table ed_ranks
+     */
+    public void creatingTableRank() {
+        try {
+            final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
+            PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_ranks (`player_name` varchar(255) NOT NULL, `player_uuid` varchar(255), `player_rank_id` int(11), `player_rank_name` varchar(255), `player_rank_type` varchar(255), `player_modulable_rank` int(11), `player_rank_purchase_date` varchar(255), `player_rank_deadline_date` varchar(255), `player_rank_palier` varchar(255), PRIMARY KEY (`player_name`), UNIQUE(`player_name`), INDEX(`player_name`)) CHARACTER SET utf8");
             stm.execute();
             stm.close();
         }
