@@ -4,12 +4,15 @@ import fr.edminecoreteam.api.database.DatabaseManager;
 import fr.edminecoreteam.api.event.PlayerEventsSpigot;
 import fr.edminecoreteam.api.management.WorldManager;
 import fr.edminecoreteam.api.utils.DBUtils;
+import fr.edminecoreteam.api.utils.PluginMessage.ReceivedPluginMessage;
 import fr.edminecoreteam.api.utils.builder.BossBarBuilder;
 import fr.edminecoreteam.api.event.BossBarEvent;
 import fr.edminecoreteam.api.utils.builder.HologramsBuilder;
 import fr.minuskube.inv.InventoryManager;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 
 
 public final class EdmineAPISpigot extends JavaPlugin {
@@ -41,6 +44,8 @@ public final class EdmineAPISpigot extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerEventsSpigot(), this);
         Bukkit.getLogger().info("Managers loaded successfully.");
         DatabaseManager.initAllDatabaseConnection();
+        
+        loadPluginMessage();
     }
 
     @Override
@@ -52,6 +57,11 @@ public final class EdmineAPISpigot extends JavaPlugin {
 
     public WorldManager getWorldManager() {
         return worldManager;
+    }
+
+    private void loadPluginMessage() {
+        ReceivedPluginMessage pluginCListener = new ReceivedPluginMessage();
+        getServer().getMessenger().registerIncomingPluginChannel((Plugin) this, "transfertAccount", (PluginMessageListener) pluginCListener);
     }
 
     public DBUtils getDbUtils() {

@@ -73,6 +73,7 @@ public class EdmineAPIBungee extends Plugin {
         dbUtils.creatingTableAccount();
         dbUtils.creatingTableLogin();
         dbUtils.creatingTableMaintenance();
+        dbUtils.creatingTableRank();
     }
 
     public Configuration getConfig(){

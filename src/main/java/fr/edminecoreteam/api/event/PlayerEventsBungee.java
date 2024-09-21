@@ -4,8 +4,11 @@ import fr.edminecoreteam.api.EdmineAPIBungee;
 import fr.edminecoreteam.api.management.PlayerManager;
 import fr.edminecoreteam.api.management.list.RankList;
 import fr.edminecoreteam.api.management.list.StaffRankList;
+import fr.edminecoreteam.api.utils.PluginMessage.ReceivedPluginMessage;
+import fr.edminecoreteam.api.utils.PluginMessage.SendPluginMessage;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.event.ServerSwitchEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
@@ -34,5 +37,10 @@ public class PlayerEventsBungee implements Listener {
             EdmineAPIBungee.getInstance().getDbUtils().saveAccount(PlayerManager.getPlayer(e.getPlayer()));
             PlayerManager.removePlayer(e.getPlayer());
         }
+    }
+
+    @EventHandler
+    public void onServerSwitch(ServerSwitchEvent e){
+        SendPluginMessage.sendPlayerAccount(PlayerManager.getPlayer(e.getPlayer()), e.getPlayer().getServer().getInfo().getName());
     }
 }

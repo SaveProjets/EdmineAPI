@@ -41,13 +41,17 @@ public class DBUtils {
         CompletableFuture.runAsync(() -> {
             // Création du compte
             try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
-                final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection) VALUES (?,?,?,?)");
+                final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection, player_fragments_d_ames, player_eclats_divins, player_argent) VALUES (?,?,?,?,?,?,?)");
 
                 preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id"));
-                preparedStatement.setString(2, player.getUniqueId().toString());
-                preparedStatement.setString(3, player.getName());
-                preparedStatement.setString(4, new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime()));
+                preparedStatement.setString(2, player.getName());
+                preparedStatement.setString(3, player.getUniqueId().toString());
+                preparedStatement.setString(4, new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime()));
+                preparedStatement.setInt(5, 100);
+                preparedStatement.setInt(6, 0);
+                preparedStatement.setInt(7, 0);
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
 
             } catch (SQLException event) {
                 event.printStackTrace();
@@ -61,12 +65,15 @@ public class DBUtils {
         CompletableFuture.runAsync(() -> {
             // Création du compte
             try (Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection()) {
-                final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection) VALUES (?,?,?,?)");
+                final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ed_accounts (player_id, player_name, player_uuid, player_first_connection, player_fragments_d_ames, player_eclats_divins, player_argent) VALUES (?,?,?,?,?,?,?)");
 
-                preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id")+1);
+                preparedStatement.setInt(1, getMaxIntOfColumn("ed_accounts", "player_id"));
                 preparedStatement.setString(2, player.getName());
                 preparedStatement.setString(3, player.getUniqueId().toString());
-                preparedStatement.setString(4, new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime()));
+                preparedStatement.setString(4, new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime()));
+                preparedStatement.setInt(5, 100);
+                preparedStatement.setInt(6, 0);
+                preparedStatement.setInt(7, 0);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
 
@@ -346,7 +353,7 @@ public class DBUtils {
             final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_accounts (`player_id` int(11) AUTO_INCREMENT, `player_name` varchar(255) NOT NULL, `player_uuid` varchar(255) UNIQUE, `player_fragments_d_ames` int(11), `player_eclats_divins` float, `player_argent` float, `player_level` int(11), `player_xp_need_to_level_up` int(11), `player_time_of_played` varchar(255), `player_first_connection` varchar(255), `player_parrain` varchar(255), `player_finish_quetes` int(11), `player_finish_succes` int(11), `player_guild_name` varchar(255), `player_total_cosmetics` int(11), `player_total_played_partys` int(11), PRIMARY KEY (`player_id`)) CHARACTER SET utf8");
             stm.execute();
-            stm.close();
+            connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -361,7 +368,7 @@ public class DBUtils {
             final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_login (`player_uuid` varchar(255), `player_password` varchar(255), `lastIP` varchar(255), `lastAuth` varchar(255),`isOnline` int(11), PRIMARY KEY (`player_uuid`), CONSTRAINT fk_player_uuid FOREIGN KEY (player_uuid) REFERENCES ed_accounts(player_uuid)) CHARACTER SET utf8");
             stm.execute();
-            stm.close();
+            connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -377,7 +384,7 @@ public class DBUtils {
             final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_maintenance (`player_uuid` varchar(255) NOT NULL, PRIMARY KEY (`player_name`), UNIQUE(`player_name`), INDEX(`player_name`)) CHARACTER SET utf8");
             stm.execute();
-            stm.close();
+            connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -392,7 +399,7 @@ public class DBUtils {
             final Connection connection = DatabaseManager.EDMINE.getDatabaseAccess().getConnection();
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_ranks (`player_name` varchar(255) NOT NULL, `player_uuid` varchar(255), `player_rank_id` int(11), `player_rank_name` varchar(255), `player_rank_type` varchar(255), `player_modulable_rank` int(11), `player_rank_purchase_date` varchar(255), `player_rank_deadline_date` varchar(255), `player_rank_palier` varchar(255), PRIMARY KEY (`player_name`), UNIQUE(`player_name`), INDEX(`player_name`)) CHARACTER SET utf8");
             stm.execute();
-            stm.close();
+            connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
