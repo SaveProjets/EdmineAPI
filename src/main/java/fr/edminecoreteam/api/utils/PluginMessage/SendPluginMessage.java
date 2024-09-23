@@ -14,10 +14,15 @@ public class SendPluginMessage{
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("transfertAccount");
         out.writeUTF(pm.getUUID().toString());
+        out.writeUTF(pm.getRank().toString());
+        out.writeUTF(pm.getStaffRank().toString());
 
         out.writeInt(pm.getSoulFragment());
-        out.writeInt(pm.getMoney());
         out.writeInt(pm.getDivineRadiance());
+        out.writeInt(pm.getMoney());
+        out.writeInt(pm.getLevel());
+        out.writeUTF(pm.getGuild());
+
 
         ProxyServer.getInstance().getServerInfo(serverName).sendData("transfertAccount", out.toByteArray());
     }

@@ -22,11 +22,15 @@ public class ReceivedPluginMessage implements PluginMessageListener {
 
         if(subChannel.equals("transfertAccount")){
             String playerUUID = in.readUTF();
+            String playerRank = in.readUTF();
+            String playerStaffRank = in.readUTF();
             int soulFragments = in.readInt();
-            int money = in.readInt();
             int divineRadiance = in.readInt();
+            int money = in.readInt();
+            int level = in.readInt();
+            String guild = in.readUTF();
 
-            PlayerManager pm = new PlayerManager(UUID.fromString(playerUUID), RankList.STAFF, StaffRankList.ADMIN, soulFragments, divineRadiance, money, 0,"test");
+            PlayerManager pm = new PlayerManager(UUID.fromString(playerUUID), RankList.valueOf(playerRank), StaffRankList.valueOf(playerStaffRank), soulFragments, divineRadiance, money, level, guild);
 
         }
     }
