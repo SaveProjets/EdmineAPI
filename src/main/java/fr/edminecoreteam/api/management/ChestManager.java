@@ -2,6 +2,7 @@ package fr.edminecoreteam.api.management;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.ItemStack;
 
@@ -59,15 +60,10 @@ public class ChestManager
 		// Parcourir tous les chunks chargés dans le monde
 		for (Chunk chunk : world.getLoadedChunks()) {
 			// Parcourir tous les blocs de chaque chunk
-			for (int x = 0; x < 16; x++) {
-				for (int z = 0; z < 16; z++) {
-					for (int y = 0; y < world.getMaxHeight(); y++) {
-						Block block = chunk.getBlock(x, y, z);
-						if (block.getState() instanceof Chest) {
-							Chest chest = (Chest) block.getState();
-							fillChest(chest, commonItems, rareItems, amountCommonItems, amountRareItems); // Remplir le coffre
-						}
-					}
+			for (BlockState blockState : chunk.getTileEntities()) {
+				if (blockState instanceof Chest)  {
+					Chest chest = (Chest) blockState;
+					fillChest(chest, commonItems, rareItems, amountCommonItems, amountRareItems);
 				}
 			}
 		}
